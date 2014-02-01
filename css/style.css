@@ -1,7 +1,7 @@
 body {
 	padding: 0px;
 	height: 100%;
-	background-color: red;
+	font-family: sans-serif;
 }
 
 div.page_wrapper {
@@ -28,7 +28,7 @@ div.header {
 }
 
 a {
-	font-family: sans-serif;
+	text-decoration: none;
 	color: white;
 }
 
@@ -44,14 +44,13 @@ div.menubar {
 	padding-left: 5%;
 	padding-right: 5%; 
 	background-color: black;
-
 	margin-left: -10px;
 	margin-right: -10px;
 }
 
 table.top_menubar {
 	width: 100%;
-	font-size: 120%;	
+	font-size: 120%;
 }
 
 table.top_left_menubar {
@@ -77,14 +76,32 @@ td.right_menuitem {
 	text-align: right;
 }
 
+div.left_side_menu {
+	font-size: 120%;
+	text-decoration: none;
+	list-style-type: none;
+	line-height: 50px;
+	width: 180px;
+	margin-top: 150px;
+	float: left;
+	display: block;
+	position: fixed;
+	background-color: black;
+}
+
 div.page_content {
 	display:block;
 	text-align: center;
+	padding-left: 200px;
 	padding-top: 130px;
+	padding-bottom: 50px;
+}
+
+table.products {
+	float: inherit;
 }
 
 div.product {
-	background-color: blue;
 	height: 200px;
 	width: 200px;
 	margin: 20px;
@@ -92,18 +109,30 @@ div.product {
 	background-image: 
 }
 
+table.products p {
+	color: black;
+}
+
 div.product img {
+	border: solid;
+	border-color: black;
 	height: 200px;
 	width: 200px;
 	border-radius: 100px;
 }
 
+ul {
+	list-style-type: none;
+}
+
 div.footer_wrapper {
+	color: white;
+	text-align: center;
 	display: block;
 	width: 100%;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	vertical-align: bottom;
-	background-color: green;
+	background-color: black;
 }
