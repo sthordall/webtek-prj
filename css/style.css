@@ -1,8 +1,8 @@
 body {
-	background: linear-gradient(red, blue);
+	background:grey;
 	padding: 0px;
 	height: 100%;
-	font-family: sans-serif;
+	font-family: "opensans", Arial, sans-serif;
 }
 
 div.page_wrapper {
@@ -35,7 +35,6 @@ a {
 
 p.header {
 	vertical-align: center;
-	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 180%;
 	color: white;
@@ -98,7 +97,8 @@ div.page_content {
 	padding-bottom: 50px;
 }
 
-table.products {
+table.product {
+	display: inline-block;
 	float: inherit;
 }
 
@@ -110,7 +110,7 @@ div.product {
 	background-image: 
 }
 
-table.products p {
+table.product p {
 	color: black;
 }
 
