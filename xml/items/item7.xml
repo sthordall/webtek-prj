@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
+  <w:itemID>0</w:itemID>
+  <w:itemName>w:itemName</w:itemName>
+  <w:itemURL>http://tempuri.org</w:itemURL>
+  <w:itemPrice>0</w:itemPrice>
+  <w:itemStock>0</w:itemStock>
+  <w:itemDescription>
+    <w:document/>
+  </w:itemDescription>
+</w:item>
