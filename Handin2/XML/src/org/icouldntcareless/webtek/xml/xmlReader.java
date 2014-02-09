@@ -1,16 +1,84 @@
 package org.icouldntcareless.webtek.xml;
 
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.jdom2.Document;
+import org.jdom2.input.JDOMParseException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.input.sax.XMLReaderJDOMFactory;
+import org.jdom2.input.sax.XMLReaderXSDFactory;
+import org.jdom2.output.XMLOutputter;
+import org.omg.CORBA.portable.InputStream;
 
 public class xmlReader {
 	private static String WebTekNameSpace = "http://www.cs.au.dk/dWebTek/2014";
 	private static final Namespace WEBTEKNAMESPACE = Namespace.getNamespace(WebTekNameSpace);
 	
-	public static void main(String[] args) {
+	public static void main(String[] args ){
+		
+//		for (int i = 0; i < args.length; i++){
+//			System.out.print(args[i]);
+//		}	
+		
+		
+		//args indeholder den fysiske sti til vores xml dokument, som er vores produkt som skal persisteres op til vores webserver
+		try {
+			File xsdfile = new File(args[1]);
+			XMLReaderJDOMFactory schemafac = new XMLReaderXSDFactory(xsdfile);
+			SAXBuilder builder = new SAXBuilder(schemafac);
+			String msg = "No errors!";
+			
+			//Hvis der ikke er smidt nogen exception, XMLReaderJDOMFactory objektet oprettet, og der kan bygges et Document ud fra
+			//et XMLdokument som skal valideres op mod skemaet. Går det skidt smides der en exception.
+			
+			try {
+			Document document = builder.build(new File(args[0]));
+			
+			URL url = null;
+			try {
+				url = new URL("http://cs.au.dk");
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        try {
+				HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		        //Lav en http request som er sat til POST.
+		        con.setRequestMethod("POST"); //Could also be "GET", "PUT", "DELETE" ...
+		        con.setDoOutput(true);
+		        con.connect();
 
-		// Generate JDOM Document from given file
+		        new XMLOutputter().output(document, con.getOutputStream());
+		        
+		        //Vi kan læse fra responsen med http statuskode om request er gået fint
+
+		        int responseCode = con.getResponseCode();
+		        
+		        if(responseCode != 200){
+		        	System.out.print("noget gik galt med responsen");
+		        }
+		        
+		        //Forbindelsen lukkes efterfølgende
+
+		        con.disconnect();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			} catch (JDOMParseException e ) {
+			msg = e.getMessage();
+			}
+			System.out.println(msg);
+			} catch (Exception e) { e.printStackTrace(); }		
 
 	}
 
