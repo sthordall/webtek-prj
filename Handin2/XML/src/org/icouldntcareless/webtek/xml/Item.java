@@ -1,19 +1,17 @@
 package org.icouldntcareless.webtek.xml;
 
-import java.net.URI;
-
 public class Item {
-	private Integer itemID;
+	private String itemID;
 	private String itemName;
-	private URI itemURL;
-	private Integer itemPrice;
-	private Integer itemStock;
-	private Integer itemDescription;
+	private String itemURL;
+	private String itemPrice;
+	private String itemStock;
+	private String itemDescription;
 
 	
 	
-	public Item(Integer itemID, String itemName, URI itemURL,
-			Integer itemPrice, Integer itemStock, Integer itemDescription) {
+	public Item(String itemID, String itemName, String itemURL,
+			String itemPrice, String itemStock, String itemDescription) {
 		super();
 		this.itemID = itemID;
 		this.itemName = itemName;
@@ -23,11 +21,11 @@ public class Item {
 		this.itemDescription = itemDescription;
 	}
 
-	public Integer getItemID() {
+	public String getItemID() {
 		return itemID;
 	}
 
-	public void setItemID(Integer itemID) {
+	public void setItemID(String itemID) {
 		this.itemID = itemID;
 	}
 
@@ -39,35 +37,35 @@ public class Item {
 		this.itemName = itemName;
 	}
 
-	public URI getItemURL() {
+	public String getItemURL() {
 		return itemURL;
 	}
 
-	public void setItemURL(URI itemURL) {
+	public void setItemURL(String itemURL) {
 		this.itemURL = itemURL;
 	}
 
-	public Integer getItemPrice() {
+	public String getItemPrice() {
 		return itemPrice;
 	}
 
-	public void setItemPrice(Integer itemPrice) {
+	public void setItemPrice(String itemPrice) {
 		this.itemPrice = itemPrice;
 	}
 
-	public Integer getItemStock() {
+	public String getItemStock() {
 		return itemStock;
 	}
 
-	public void setItemStock(Integer itemStock) {
+	public void setItemStock(String itemStock) {
 		this.itemStock = itemStock;
 	}
 
-	public Integer getItemDescription() {
+	public String getItemDescription() {
 		return itemDescription;
 	}
 
-	public void setItemDescription(Integer itemDescription) {
+	public void setItemDescription(String itemDescription) {
 		this.itemDescription = itemDescription;
 	}
 }
