@@ -10,6 +10,19 @@ public class Item {
 	private Integer itemStock;
 	private Integer itemDescription;
 
+	
+	
+	public Item(Integer itemID, String itemName, URI itemURL,
+			Integer itemPrice, Integer itemStock, Integer itemDescription) {
+		super();
+		this.itemID = itemID;
+		this.itemName = itemName;
+		this.itemURL = itemURL;
+		this.itemPrice = itemPrice;
+		this.itemStock = itemStock;
+		this.itemDescription = itemDescription;
+	}
+
 	public Integer getItemID() {
 		return itemID;
 	}
