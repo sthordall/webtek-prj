@@ -14,39 +14,27 @@ import org.jdom2.input.sax.XMLReaderXSDFactory;
 import org.jdom2.output.XMLOutputter;
 
 public class xmlReader {
-	private static String WebTekNameSpace = "http://www.cs.au.dk/dWebTek/2014";
-	private static final Namespace WEBTEKNAMESPACE = Namespace
-			.getNamespace(WebTekNameSpace);
-
+	private static final Namespace WEBTEKNAMESPACE = Namespace.getNamespace("http://www.cs.au.dk/dWebTek/2014");
+	private static final String CLOUDURL = "http://services.brics.dk/java4/cloud";
+	private static final String CREATEITEM = "/createItem";
+	private static final String MODIFYITEM = "/modifyItem";
+	
 	public static void main(String[] args) {
 
-		// for (int i = 0; i < args.length; i++){
-		// System.out.print(args[i]);
-		// }
-
-		// args indeholder den fysiske sti til vores xml dokument, som er vores
-		// produkt som skal persisteres op til vores webserver
 		try {
 			File xsdfile = new File(args[1]);
 			XMLReaderJDOMFactory schemafac = new XMLReaderXSDFactory(xsdfile);
 			SAXBuilder builder = new SAXBuilder(schemafac);
 			String msg = "No errors!";
-
-			// Hvis der ikke er smidt nogen exception, XMLReaderJDOMFactory
-			// objektet oprettet, og der kan bygges et Document ud fra
-			// et XMLdokument som skal valideres op mod skemaet. G�r det skidt
-			// smides der en exception.
-
+			
 			Document document = builder.build(new File(args[0]));
 
-			URL url = null;
-
-			url = new URL("http://cs.au.dk");
+			URL url = new URL(CLOUDURL+CREATEITEM);
 
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			// Lav en http request som er sat til POST.
-			con.setRequestMethod("POST"); // Could also be "GET", "PUT",
-											// "DELETE" ...
+			
+			con.setRequestMethod("POST"); 
+			con.setRequestProperty(key, value);
 			con.setDoOutput(true);
 			con.connect();
 
