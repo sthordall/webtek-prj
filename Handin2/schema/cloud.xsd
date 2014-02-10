@@ -29,6 +29,7 @@
 			<element ref="w:itemID" />
 			<element ref="w:itemName" />
 			<element ref="w:itemPrice" />
+			<element ref="w:itemStock" />
 			<element ref="w:itemURL" />
 			<element ref="w:itemDescription" />
 		</all>
