@@ -29,7 +29,6 @@
 			<element ref="w:itemID" />
 			<element ref="w:itemName" />
 			<element ref="w:itemPrice" />
-			<element ref="w:itemStock" />
 			<element ref="w:itemURL" />
 			<element ref="w:itemDescription" />
 		</all>
@@ -208,7 +207,20 @@
 		</choice>
 	</complexType>
 	
-	
+   <element name="deleteItem" type="w:deleteItem"/>
+    <complexType name="deleteItem">
+        <all>
+            <element ref="w:shopKey"/>
+            <element ref="w:itemID"/>
+        </all>
+    </complexType>
+
+    <element name="itemIDs" type="w:itemIDs"/>
+    <complexType name="itemIDs">
+        <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="w:itemID"/>
+        </sequence>
+    </complexType>
 	
 	
 	<element name="itemID" type="nonNegativeInteger" />

@@ -1,5 +1,15 @@
 package org.icouldntcareless.webtek.xml;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.input.sax.XMLReaderJDOMFactory;
+import org.jdom2.input.sax.XMLReaderXSDFactory;
+
 public class Item {
 	private String itemID;
 	private String itemName;
@@ -7,8 +17,6 @@ public class Item {
 	private String itemPrice;
 	private String itemStock;
 	private String itemDescription;
-
-	
 	
 	public Item(String itemID, String itemName, String itemURL,
 			String itemPrice, String itemStock, String itemDescription) {
