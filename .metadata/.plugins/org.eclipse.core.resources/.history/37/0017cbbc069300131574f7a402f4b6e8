@@ -1,0 +1,10 @@
+package org.icouldntcareless.webtek.xml;
+
+public class DeleteProgram {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
