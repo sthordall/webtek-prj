@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>PIANO_KorgKronosX73</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/workstations/korg/kronos-x-73.html</w:itemURL>
+  <w:itemPrice>28999</w:itemPrice>
+  <w:itemStock>6</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>Workstation og sampler med 73 vægtede tangenter. Karma teknologi, 9 individuelle forskellige lyd generatorer. 2GB PCM RAM for sampling, SSD 62 GB kapacitet for lydbiblioteker.</w:document>
   </w:itemDescription>
 </w:item>

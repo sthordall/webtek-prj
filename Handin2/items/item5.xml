@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>BASS_SandbergCATm5"Patchwork"#2</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/elbas/sandberg/ca-tm5-patchwork-2.html</w:itemURL>
+  <w:itemPrice>27999</w:itemPrice>
+  <w:itemStock>6</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>California Series - Elbas med krop af ask/elletræ/mahogni, ahornhals med gribebræt af ahorn/rosentræ, Delano single og humbucker pickup med split og aktiv/passiv 2-bånds EQ. Inkl. gigbag.</w:document>
   </w:itemDescription>
 </w:item>

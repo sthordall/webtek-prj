@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>2</w:itemID>
-  <w:itemName>GUITAR_VildModel</w:itemName>
-  <w:itemURL>http://vildmodel</w:itemURL>
-  <w:itemPrice>5</w:itemPrice>
-  <w:itemStock>6000</w:itemStock>
+  <w:itemName>GUITAR_GibsonHummingbird</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/westernguitarer/gibson/hummingbird.html</w:itemURL>
+  <w:itemPrice>19799</w:itemPrice>
+  <w:itemStock>4</w:itemStock>
   <w:itemDescription>
     <w:document>
-        1234567
+        Én af Gibsons absolutte klassikere har fået en kæmpe revival, og der er grund til det. Det smukke og særprægede ydre er kombineret med en sprød og varm dreadnaught-tone. Gibson Hummingbird har massivt sitka grandæk i AAA kvalitet, bund og sider i mahogni. Halsen er ligeledes lavet i mahogni men selve gribebrædtet på Hummingbirden er lavet af rosentræ. Når man spiller på en Hummingbird mærker man tydeligt at man har en rigtig håndbygget guitar hænderne, byggekvaliteten er helt i top og lyden er flot og afbalanceret med masser af volumen.
     </w:document>
   </w:itemDescription>
 </w:item>

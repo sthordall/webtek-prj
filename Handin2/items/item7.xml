@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>VIOLIN_GewaConcerto</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/violiner/gewa/violinsaet-4-4-concerto.html</w:itemURL>
+  <w:itemPrice>5999</w:itemPrice>
+  <w:itemStock>8</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>Concerto violinsæt henvender sig til den krævende begynder eller mere viderekommende der ønsker en violin i en god kvalitet. Violinen er håndlavet af specielt udvalgt træ, så man er sikker på at have et instrument som hele tiden udvikler sig og bliver bedre.</w:document>
   </w:itemDescription>
 </w:item>

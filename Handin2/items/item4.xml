@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>PIANO_YamahaTyros5-76XXL</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/automatikkeyboards/yamaha/tyros-5-76xxl.html</w:itemURL>
+  <w:itemPrice>35099</w:itemPrice>
+  <w:itemStock>3</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>Professionelt arrangementskeyboard med 76 tangenter, Inkl. TRS-MS05 højttalersystem og L7S stativ, 1759 lyde plus 37 trommesæt, 539 styles heraf 40 Audio-styles, 4-sub udgange. Kabinet i titaniumfinish. Inkl. trådløs LAN-adapter.</w:document>
   </w:itemDescription>
 </w:item>

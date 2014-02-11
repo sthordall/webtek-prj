@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>TRUMPET_YamahaYTR-8310ZBbJazzTrompet</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/trompeter/yamaha/ytr-8310z-bb-jazz-trompet.html</w:itemURL>
+  <w:itemPrice>13699</w:itemPrice>
+  <w:itemStock>5</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>Der er altid noget godt Yamaha for enhver, om man spiller trompet, basun, sax, klarinet eller tværfløjte, har lille sparegris af ler eller platinbelagt MasterCard. Verdens største instrumentproducent begyndte at fremstille blæseinstrumenter i 1965, og kvaliteten er som altid med Yamaha tiptop.</w:document>
   </w:itemDescription>
 </w:item>

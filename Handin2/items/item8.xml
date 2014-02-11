@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>BASS_CremonaSB4Kontrabas</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/kontrabasser/cremona/sb4-3-4-kontrabas.html</w:itemURL>
+  <w:itemPrice>9999</w:itemPrice>
+  <w:itemStock>5</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>Kontrabas i 3/4 størrelse med dæk af massiv spruce, sider og bund af ahorn og gribebræt af ibenholt. Inkl. task</w:document>
   </w:itemDescription>
 </w:item>

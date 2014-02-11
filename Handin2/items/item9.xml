@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>DRUM_RolandTD-30KV</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/digitrommer/roland/td-30kv.html</w:itemURL>
+  <w:itemPrice>52829</w:itemPrice>
+  <w:itemStock>5</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>I over ti år har Rolands revolutionerende V-Drums været førende I branchen med udtryksfuld lydkvalitet og fantastisk spilbarhed. Med introduktionen af det SuperNATURAL-powered TD-30KV sæt, har det digitale trommesæt nået nye højder indenfor tromme-performance. SuperNATURAL lyde med "Behavior Modeling" og avanceret anslagsteknologi løfter niveauet for udtryksfuld lydkvalitet og spilfornemmelse, hvilket resulterer i et instrument der reagerer og responderer på alle detaljer, nuancer og dynamikker i trommeslagerens teknik. Udover det, er der tilføjet USB audio-playback funktionalitet, så du kan udvide hele performance-paletten. Det nye TD-30KV V-Pro trommesæt er i sandhed en komplet og naturlig trommeoplevelse på live-scenen.</w:document>
   </w:itemDescription>
 </w:item>

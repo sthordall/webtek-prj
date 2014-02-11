@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <w:item xmlns:w="http://www.cs.au.dk/dWebTek/2014" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.cs.au.dk/dWebTek/2014 schema/cloud.xsd ">
   <w:itemID>0</w:itemID>
-  <w:itemName>w:itemName</w:itemName>
-  <w:itemURL>http://tempuri.org</w:itemURL>
-  <w:itemPrice>0</w:itemPrice>
-  <w:itemStock>0</w:itemStock>
+  <w:itemName>DRUM_TamaStarMaple</w:itemName>
+  <w:itemURL>http://www.4sound.dk/shop/trommesaet/tama/star-maple-22-12-16-smp.html</w:itemURL>
+  <w:itemPrice>34999</w:itemPrice>
+  <w:itemStock>8</w:itemStock>
   <w:itemDescription>
-    <w:document/>
+    <w:document>
+    <w:bold>Tama Star - Det nye flagskib</w:bold>
+    Med lancering af Star spørger Tama: Husker du den første gang, du nogensinde spillede trommer? Følelsen af, at du virkelig rykkede luften omkring dig og blev draget ind i den enorme lyd, et trommesæt kan producere. Star er ikke henvendt til begyndere, men til dig, der har brugt oceaner af timer i øvelokaler og på scener. Dig, der måske har behov for at genfinde den oprindelige spillefølelse og som nu har fortjent at opleve den på et sublimt, håndlavet sæt.
+	</w:document>
   </w:itemDescription>
 </w:item>
