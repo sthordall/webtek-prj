@@ -101,8 +101,53 @@ public class xmlReader {
 
 	}
 
-}
 
+public void DeleteProduct(String shopkey, String itemid, Namespace namespace, String urlDelete){
+	//Create Delete element 
+	Element deleteItem = new Element("deleteItem");
+	
+	// Add namespace to deleteItem element
+	deleteItem.addNamespaceDeclaration(namespace);
+	deleteItem.setNamespace(namespace);
+
+	// Add shopKey element to modifyItem element
+	deleteItem.addContent(new Element("shopKey").setText(shopkey)
+			.setNamespace(namespace));
+	
+	// Add itemID element to modifyItem element
+	deleteItem.addContent(new Element("itemID").setText(itemid)
+			.setNamespace(namespace));
+	
+	Document deleteItemDocument = new Document(deleteItem);
+	XMLOutputter modOutputter = new XMLOutputter();
+	try{
+	// Output modifyItem element as document, over HTTP
+	URL modurl = new URL(urlDelete);
+
+	HttpURLConnection modcon = (HttpURLConnection) modurl
+			.openConnection();
+	modcon.setRequestMethod("POST");
+	modcon.setDoOutput(true);
+	modcon.connect();
+
+	modOutputter.output(deleteItemDocument, System.out);//modcon.getOutputStream());
+	modOutputter.output(deleteItemDocument, modcon.getOutputStream());
+	
+	if (modcon.getResponseCode() != 200) {
+		System.out.print("noget gik galt med request af /deleteItem: "
+				+ modcon.getResponseMessage() + ". URL for delete er : " + urlDelete);
+		
+	}
+
+	modcon.disconnect();
+
+} catch (Exception e) {
+	System.out.println("An error occurred:" + e.getMessage());
+
+	e.printStackTrace();
+}
+}
+}
 // private static final Namespace WEBTEKNAMESPACE = Namespace.getNamespace(
 // "w", "http://www.cs.au.dk/dWebTek/2014");
 //
