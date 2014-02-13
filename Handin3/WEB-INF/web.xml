@@ -4,7 +4,7 @@
 
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>MusicShopLogin</servlet-class>
+    <servlet-class>Login</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
