@@ -3,3 +3,7 @@
 *.class
 
 Handin2/XML/.classpath
+
+Handin3/.cvsignore
+
+Handin3/WEB-INF/.cvsignore
