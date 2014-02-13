@@ -16,5 +16,6 @@ public class DeleteProgram {
 		
 		delete.DeleteProduct(SHOPKEY, "2168", WEBTEKNAMESPACE, CLOUDURL+DELETE);
 	}
+	//jsdjds
 
 }
