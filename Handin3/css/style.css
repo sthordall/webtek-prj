@@ -90,11 +90,11 @@ div.left_side_menu {
 }
 
 div.page_content {
-	display:block;
+	display:inline-block;
 	text-align: center;
-	padding-left: 200px;
 	padding-top: 130px;
 	padding-bottom: 50px;
+	width: 100%;
 }
 
 table.product {
