@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sun.org.mozilla.javascript.internal.ast.ThrowStatement;
 
 public class Login extends HttpServlet {
+	private static final long serialVersionUID = 7116008849202444786L;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		

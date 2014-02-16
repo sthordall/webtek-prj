@@ -7,9 +7,9 @@ import java.io.Serializable;
 @ManagedBean
 @SessionScoped
 public class Item implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
+
+	private static final long serialVersionUID = 148246321600366013L;
+
 	private String itemID;
 	
 	private String itemName;
