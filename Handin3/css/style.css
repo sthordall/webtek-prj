@@ -112,9 +112,11 @@ div.product {
 
 table.product p {
 	color: black;
+	font-weight: bold;
+	font-size: 120%;
 }
 
-div.product img {
+table.product img {
 	border: solid;
 	border-color: black;
 	height: 200px;
