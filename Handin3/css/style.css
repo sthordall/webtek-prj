@@ -137,6 +137,7 @@ div.footer_wrapper {
 	text-align: left;
 	border-collapse: collapse;
 	background-color: silver;
+	box-shadow: 5px 5px 5px #555;
 }
 
 .itemListTableHeader{
