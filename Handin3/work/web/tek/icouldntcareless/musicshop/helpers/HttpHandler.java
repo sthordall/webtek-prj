@@ -12,7 +12,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
 public class HttpHandler {
-
+	
 	public Document outputXMLonHTTP(String httpRequestType, URL url,
 			Document docToOutput) throws ProtocolException, IOException,
 			JDOMException {
@@ -44,4 +44,6 @@ public class HttpHandler {
 
 		return responseDocument;
 	}
+	
+	
 }

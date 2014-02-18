@@ -4,13 +4,47 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core" template="template.xhtml">
 	<ui:define name="content">
-		<h1>Music Shop Item Management</h1>
-		<table class="product">
-			<tbody>
-				
-			</tbody>
-		</table>
+		<h:form>
+			<h1>Music Shop Item Management</h1>
+			<h:dataTable value="#{Items.itemList}" var="Item"
+				styleClass="itemListTable" headerClass="itemListTableHeader">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+				#{Item.itemID}
+			</h:column>
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+				#{Item.itemName}
+			</h:column>
+				<h:column>
+					<f:facet name="header">URL</f:facet>
+				#{Item.itemURL}
+			</h:column>
+				<h:column>
+					<f:facet name="header">Price</f:facet>
+				#{Item.itemPrice}
+			</h:column>
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+				#{Item.itemStock}
+			</h:column>
+				<h:column>
+					<f:facet name="header">Description</f:facet>
+				#{Item.itemDescription}
+			</h:column>
+				<h:column>
+					<h:commandButton id="modifyItemButton" value="Modify"></h:commandButton>
+				</h:column>
+				<h:column>
+					<h:commandButton id="adjustItemStockButton" value="Adjust Stock"></h:commandButton>
+				</h:column>
+				<h:column>
+					<h:commandButton id="deleteItemButton" value="Delete"></h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

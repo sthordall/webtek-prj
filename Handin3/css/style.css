@@ -131,3 +131,27 @@ div.footer_wrapper {
 	vertical-align: bottom;
 	background-color: black;
 }
+
+.itemListTable {
+	margin: 0 auto;
+	text-align: left;
+	border-collapse: collapse;
+	background-color: silver;
+}
+
+.itemListTableHeader{
+	font-size: 120%;
+	padding: 0 10px;
+	background-color: black;
+	color: white;
+	border: black solid;
+}
+
+.itemListTable td {
+	padding: 0 10px;
+	border-bottom: black solid;
+}
+
+commandButton {
+	
+}
