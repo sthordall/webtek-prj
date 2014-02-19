@@ -138,6 +138,7 @@ div.footer_wrapper {
 	border-collapse: collapse;
 	background-color: silver;
 	box-shadow: 5px 5px 5px #555;
+	width: 80%;
 }
 
 .itemListTableHeader{
@@ -151,8 +152,12 @@ div.footer_wrapper {
 .itemListTable td {
 	padding: 0 10px;
 	border-bottom: black solid;
+	
 }
 
-commandButton {
+.itemListTable tr {
+	overflow:hidden;
+	display: table-row;
+}
 	
 }
