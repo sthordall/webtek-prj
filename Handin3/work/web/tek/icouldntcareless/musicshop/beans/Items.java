@@ -30,7 +30,7 @@ public class Items implements Serializable {
 		try {
 			URL requestUrl = new URL(ApplicationConstants.CLOUDURL
 					+ ApplicationConstants.LISTITEMS);
-			Element responseRoot = httpHandler.HttpRequest("GT", requestUrl)
+			Element responseRoot = httpHandler.HttpRequest("GET", requestUrl)
 					.getRootElement();
 
 			if (responseRoot == null) {
