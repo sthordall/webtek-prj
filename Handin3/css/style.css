@@ -129,6 +129,15 @@ div.footer_wrapper {
 	background-color: black;
 }
 
+div.managementMenu {
+	padding: 10px;
+	margin: 20px;
+	text-align: center;
+	background-color: silver;
+	border: solid black;
+	box-shadow: 5px 5px 5px #555;
+}
+
 .itemListTable {
 	margin: 0 auto;
 	text-align: center;

@@ -10,6 +10,11 @@
 	<ui:define name="content">
 		<h:form>
 			<h1>Music Shop - Management</h1>
+			<div class="managementMenu">
+				<a href="">Create Customer</a>
+				<br />
+				<a href="">Create Item</a>
+			</div>
 			<h:dataTable value="#{Items.itemList}" var="Item"
 				styleClass="itemListTable" headerClass="itemListTableHeader"
 				columnClasses="itemID,itemName,itemURL,itemPrice,itemStock,itemDescription">
