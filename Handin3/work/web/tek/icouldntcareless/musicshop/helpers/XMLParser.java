@@ -22,7 +22,7 @@ public class XMLParser {
 		return document.getRootElement();
 
 	}
-
+	
 	public Document getCreateItemRequest(Element item, String shopKey,
 			Namespace namespace) {
 		Element createItem = new Element("createItem");
@@ -35,7 +35,19 @@ public class XMLParser {
 
 		return new Document(createItem);
 	}
-
+	
+	public Document getLoginRequest(String username, String password){
+				
+		Element login = new Element("login");
+		login.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+		
+		login.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		login.addContent(new Element("customerName").setText(username)).setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		login.addContent(new Element("customerPass").setText(password));
+		
+		return new Document(login);
+	}
+	
 	public Document getModifyItemRequest(Element item, Element itemID,
 			String shopKey, Namespace namespace) {
 
@@ -49,52 +61,55 @@ public class XMLParser {
 		List<Element> itemChildren = item.getChildren();
 		for (Element element : itemChildren) {
 			if (element.getName() == "itemID") {
-				modifyItem.addContent(new Element("itemID").setText(
-						itemID.getText()).setNamespace(namespace));
+				modifyItem.addContent(new Element("itemID").setText(itemID
+						.getText()).setNamespace(namespace));
 			} else if (element.getName() == "itemStock") {
 				// DO NOTHING
 			} else {
 				modifyItem.addContent(element.clone());
 			}
 		}
-
+		
 		return new Document(modifyItem);
 
 	}
-
-	public String getDescriptionInHtml(Element itemDescription)
-			throws JDOMException, IOException {
+    
+    public String getDescriptionInHtml(Element itemDescription)
+    throws JDOMException, IOException {
 		String descriptionStr = "";
-
+        
 		for (Element descriptionChild : itemDescription.getChildren()) {
-
+            
 			switch (descriptionChild.getName()) {
-			case "document":
-				descriptionChild.setName("div");
-				break;
-			case "bold":
-				descriptionChild.setName("b");
-				break;
-			case "italics":
-				descriptionChild.setName("i");
-				break;
-			case "list":
-				descriptionChild.setName("ul");
-				break;
-			case "item":
-				descriptionChild.setName("li");
-				break;
-			default:
-				break;
+                case "document":
+                    descriptionChild.setName("div");
+                    break;
+                case "bold":
+                    descriptionChild.setName("b");
+                    break;
+                case "italics":
+                    descriptionChild.setName("i");
+                    break;
+                case "list":
+                    descriptionChild.setName("ul");
+                    break;
+                case "item":
+                    descriptionChild.setName("li");
+                    break;
+                default:
+                    break;
 			}
-
+            
 			descriptionChild
-					.setNamespace(ApplicationConstants.JSFHTMLNAMESPACE);
-
+            .setNamespace(ApplicationConstants.JSFHTMLNAMESPACE);
+            
 			descriptionStr = descriptionStr + descriptionChild.getText()
-					+ getDescriptionInHtml(descriptionChild);
+            + getDescriptionInHtml(descriptionChild);
 		}
-
+        
 		return descriptionStr;
 	}
+
+	
 }
+>>>>>>> e69e9627e967d7185909f196195bcd0e943f1401
