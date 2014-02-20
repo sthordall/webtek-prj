@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.jdom2.Element;
 
@@ -14,7 +14,7 @@ import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
 import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
 
 @ManagedBean(name = "Items", eager = true)
-@NoneScoped
+@ViewScoped
 public class Items implements Serializable {
 
 	private HttpHandler httpHandler;
