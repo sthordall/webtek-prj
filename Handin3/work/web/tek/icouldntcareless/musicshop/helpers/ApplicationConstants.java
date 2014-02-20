@@ -14,8 +14,9 @@ public class ApplicationConstants {
 	public static final String SHOPID = "446";
 	public static final String SHOPKEY = "79D23EFCA0DAAD24E5FFF385";
 	public static final String CLOUDURL = "http://services.brics.dk/java4/cloud";
-	public static final String CREATEITEM = "/createItem";
-	public static final String MODIFYITEM = "/modifyItem";
-	public static final String LISTITEMS = "/listItems?shopID=" + SHOPID;
+	public static final String CREATEITEM = CLOUDURL + "/createItem";
+	public static final String MODIFYITEM = CLOUDURL + "/modifyItem";
+	public static final String LISTITEMS = CLOUDURL + "/listItems?shopID=" + SHOPID;
+	public static final String LISTCUSTOMERS = CLOUDURL + "/listCustomers";
 
 }
