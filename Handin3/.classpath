@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/javax.faces-2.2.5.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jdom-2.0.5.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/javax.ws.rs-api-2.0.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

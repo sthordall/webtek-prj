@@ -2,6 +2,7 @@ package web.tek.icouldntcareless.musicshop.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
+import javax.ws.rs.FormParam;
 
 import java.io.Serializable;
 
@@ -11,9 +12,9 @@ public class Item implements Serializable {
 	
 	private static final long serialVersionUID = 148246321600366013L;
 
-	private String itemID;
+	private String itemID = "42";
 	
-	private String itemName;
+	private String itemName = "hej hej";
 
 	private String itemURL;
 	
@@ -22,6 +23,8 @@ public class Item implements Serializable {
 	private String itemStock;
 	
 	private String itemDescription;
+	
+	public Item(){}
 	
 	public Item(String itemID, String itemName, String itemURL,
 			String itemPrice, String itemStock, String itemDescription) {
