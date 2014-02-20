@@ -31,8 +31,7 @@ public class Items implements Serializable {
 		xmlParser = new XMLParser();
 
 		try {
-			URL requestUrl = new URL(ApplicationConstants.CLOUDURL
-					+ ApplicationConstants.LISTITEMS);
+			URL requestUrl = new URL(ApplicationConstants.LISTITEMS);
 			Element responseRoot = httpHandler.HttpRequest("GET", requestUrl)
 					.getRootElement();
 
