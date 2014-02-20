@@ -94,7 +94,7 @@ public class Item implements Serializable {
 		}
 		
 		try {
-			handler.outputXMLonHTTP("POST", new URL(ApplicationConstants.CLOUDURL + ApplicationConstants.MODIFYITEM), document);
+			handler.outputXMLonHTTP("POST", new URL(ApplicationConstants.MODIFYITEM), document);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
