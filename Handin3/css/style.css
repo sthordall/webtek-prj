@@ -166,6 +166,10 @@ div.managementMenu {
 	vertical-align: top;
 }
 
+.itemListTable img {
+	width: 80px;
+}
+
 td.itemID {
 	
 }
