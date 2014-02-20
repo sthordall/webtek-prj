@@ -12,12 +12,14 @@ import org.jdom2.Element;
 
 import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
 import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
+import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
 
 @ManagedBean(name = "Items", eager = true)
 @ViewScoped
 public class Items implements Serializable {
 
 	private HttpHandler httpHandler;
+	private XMLParser xmlParser;
 
 	private static final long serialVersionUID = 2597636401051332599L;
 
@@ -26,6 +28,7 @@ public class Items implements Serializable {
 	@PostConstruct
 	public void init() {
 		httpHandler = new HttpHandler();
+		xmlParser = new XMLParser();
 
 		try {
 			URL requestUrl = new URL(ApplicationConstants.CLOUDURL
@@ -39,35 +42,6 @@ public class Items implements Serializable {
 				itemList = new ArrayList<Item>();
 
 				for (Element itemChild : responseRoot.getChildren()) {
-					Element description = itemChild.getChild("itemDescription",
-							ApplicationConstants.WEBTEKNAMESPACE);
-
-					String descriptionStr = "";
-
-					for (Element descriptionChild : description.getChildren()) {
-						descriptionChild.setNamespace(null);
-						switch (descriptionChild.getName()) {
-						case "document":
-							descriptionChild.setName("div");
-							break;
-						case "bold":
-							descriptionChild.setName("b");
-							break;
-						case "italics":
-							descriptionChild.setName("i");
-							break;
-						case "list":
-							descriptionChild.setName("ul");
-							break;
-						case "item":
-							descriptionChild.setName("li");
-							break;
-						default:
-							break;
-						}
-
-						descriptionStr += descriptionChild.getValue();
-					}
 
 					itemList.add(new Item(itemChild.getChildText("itemID",
 							ApplicationConstants.WEBTEKNAMESPACE), itemChild
@@ -79,7 +53,9 @@ public class Items implements Serializable {
 									ApplicationConstants.WEBTEKNAMESPACE),
 							itemChild.getChildText("itemStock",
 									ApplicationConstants.WEBTEKNAMESPACE),
-							descriptionStr));
+							xmlParser.getDescriptionInHtml(itemChild.getChild(
+									"itemDescription",
+									ApplicationConstants.WEBTEKNAMESPACE))));
 				}
 			}
 		} catch (Exception e) {
