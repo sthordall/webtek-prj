@@ -1,29 +1,27 @@
 package web.tek.icouldntcareless.musicshop.beans;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
-import javax.ws.rs.FormParam;
-
 import java.io.Serializable;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 @ManagedBean(name = "Item", eager = true)
-@NoneScoped
+@RequestScoped
 public class Item implements Serializable {
-	
 	private static final long serialVersionUID = 148246321600366013L;
 
-	private String itemID = "42";
-	
-	private String itemName = "hej hej";
+	private String itemID;
+
+	private String itemName;
 
 	private String itemURL;
-	
+
 	private String itemPrice;
-	
+
 	private String itemStock;
-	
+
 	private String itemDescription;
-	
+
 	public Item(){}
 	
 	public Item(String itemID, String itemName, String itemURL,
@@ -84,5 +82,5 @@ public class Item implements Serializable {
 	public void setItemDescription(String itemDescription) {
 		this.itemDescription = itemDescription;
 	}
-	
+
 }
