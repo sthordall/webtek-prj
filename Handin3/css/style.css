@@ -138,6 +138,7 @@ div.footer_wrapper {
 	width: auto;
 	word-wrap: break-word;
 	table-layout: fixed;
+	margin: 20px;
 }
 
 .itemListTableHeader {
@@ -150,7 +151,7 @@ div.footer_wrapper {
 }
 
 .itemListTable td {
-	padding: 0 2px;
+	padding: 2px 2px;
 	border: black solid;
 	word-wrap: break-word;
 	vertical-align: top;

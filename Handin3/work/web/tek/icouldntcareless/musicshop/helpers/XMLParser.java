@@ -12,11 +12,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaderJDOMFactory;
 import org.jdom2.input.sax.XMLReaderXSDFactory;
 
-import web.tek.icouldntcareless.musicshop.beans.Item;
-
-
 public class XMLParser {
-	
 	public Element getRootElement(File xml, File schema) throws JDOMException,
 			IOException {
 		XMLReaderJDOMFactory schemafac = new XMLReaderXSDFactory(schema);
@@ -26,7 +22,7 @@ public class XMLParser {
 		return document.getRootElement();
 
 	}
-	
+
 //	public Document GenerateDocumentFromItem(Item item, Namespace namespace, String shopKey){
 //		Element modifyitem = new Element("modifyItem");
 //		modifyitem.addNamespaceDeclaration(namespace);
@@ -55,7 +51,20 @@ public class XMLParser {
 
 		return new Document(createItem);
 	}
-	
+
+	public Document getLoginRequest(String username, String password) {
+
+		Element login = new Element("login");
+		login.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+
+		login.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		login.addContent(new Element("customerName").setText(username))
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		login.addContent(new Element("customerPass").setText(password));
+
+		return new Document(login);
+	}
+
 	public Document getModifyItemRequest(Element item, Element itemID,
 			String shopKey, Namespace namespace) {
 
@@ -69,17 +78,53 @@ public class XMLParser {
 		List<Element> itemChildren = item.getChildren();
 		for (Element element : itemChildren) {
 			if (element.getName() == "itemID") {
-				modifyItem.addContent(new Element("itemID").setText(itemID
-						.getText()).setNamespace(namespace));
+				modifyItem.addContent(new Element("itemID").setText(
+						itemID.getText()).setNamespace(namespace));
 			} else if (element.getName() == "itemStock") {
 				// DO NOTHING
 			} else {
 				modifyItem.addContent(element.clone());
 			}
 		}
-		
+
 		return new Document(modifyItem);
 
 	}
-	
+
+	public String getDescriptionInHtml(Element itemDescription)
+			throws JDOMException, IOException {
+		String descriptionStr = "";
+
+		for (Element descriptionChild : itemDescription.getChildren()) {
+
+			switch (descriptionChild.getName()) {
+			case "document":
+				descriptionChild.setName("div");
+				break;
+			case "bold":
+				descriptionChild.setName("b");
+				break;
+			case "italics":
+				descriptionChild.setName("i");
+				break;
+			case "list":
+				descriptionChild.setName("ul");
+				break;
+			case "item":
+				descriptionChild.setName("li");
+				break;
+			default:
+				break;
+			}
+
+			descriptionChild
+					.setNamespace(ApplicationConstants.JSFHTMLNAMESPACE);
+
+			descriptionStr = descriptionStr + descriptionChild.getText()
+					+ getDescriptionInHtml(descriptionChild);
+		}
+
+		return descriptionStr;
+	}
+
 }
