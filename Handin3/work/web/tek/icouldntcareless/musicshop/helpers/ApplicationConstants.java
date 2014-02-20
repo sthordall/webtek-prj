@@ -11,6 +11,9 @@ public class ApplicationConstants {
 			"http://www.cs.au.dk/dWebTek/2014");
 	public static final Namespace CUSTOMJSFTAGNAMESPACE = Namespace
 			.getNamespace("customjsf", "http://dWebTek.dk/jsf/tag");
+	public static final Namespace JSFHTMLNAMESPACE = Namespace.getNamespace(
+			"h", "http://java.sun.com/jsf/html");
+
 	public static final String SHOPID = "446";
 	public static final String SHOPKEY = "79D23EFCA0DAAD24E5FFF385";
 	public static final String CLOUDURL = "http://services.brics.dk/java4/cloud";
