@@ -36,6 +36,18 @@ public class XMLParser {
 		return new Document(createItem);
 	}
 	
+	public Document getLoginRequest(String username, String password){
+				
+		Element login = new Element("login");
+		login.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+		
+		login.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		login.addContent(new Element("customerName").setText(username)).setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		login.addContent(new Element("customerPass").setText(password));
+		
+		return new Document(login);
+	}
+	
 	public Document getModifyItemRequest(Element item, Element itemID,
 			String shopKey, Namespace namespace) {
 
