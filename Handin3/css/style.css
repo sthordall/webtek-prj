@@ -1,5 +1,5 @@
 body {
-	background:grey;
+	background: grey;
 	padding: 0px;
 	height: 100%;
 	font-family: "opensans", Arial, sans-serif;
@@ -8,7 +8,6 @@ body {
 div.page_wrapper {
 	height: 100%;
 	width: 100%;
-
 }
 
 div.header_wrapper {
@@ -21,7 +20,7 @@ div.header_wrapper {
 }
 
 div.header {
-	background-color:  rgba(0, 0, 0, 1);
+	background-color: rgba(0, 0, 0, 1);
 	text-align: center;
 	height: 80px;
 	padding-top: 5px;
@@ -42,7 +41,7 @@ p.header {
 
 div.menubar {
 	padding-left: 5%;
-	padding-right: 5%; 
+	padding-right: 5%;
 	background-color: rgba(0, 0, 0, 0.7);
 	margin-left: -10px;
 	margin-right: -10px;
@@ -62,7 +61,6 @@ table.top_right_menubar {
 	float: right;
 	text-align: right;
 }
-
 
 td.left_menuitem {
 	padding-left: 5px;
@@ -90,7 +88,7 @@ div.left_side_menu {
 }
 
 div.page_content {
-	display:inline-block;
+	display: inline-block;
 	text-align: center;
 	padding-top: 130px;
 	padding-bottom: 50px;
@@ -100,7 +98,6 @@ div.page_content {
 table.product {
 	display: inline-block;
 }
-
 
 table.product p {
 	color: black;
@@ -134,30 +131,61 @@ div.footer_wrapper {
 
 .itemListTable {
 	margin: 0 auto;
-	text-align: left;
+	text-align: center;
 	border-collapse: collapse;
 	background-color: silver;
 	box-shadow: 5px 5px 5px #555;
-	width: 80%;
+	width: auto;
+	word-wrap: break-word;
+	table-layout: fixed;
 }
 
-.itemListTableHeader{
-	font-size: 120%;
-	padding: 0 10px;
+.itemListTableHeader {
+	font-size: 100%;
+	padding: 0 2px;
 	background-color: black;
 	color: white;
 	border: black solid;
+	word-wrap: break-word;
 }
 
 .itemListTable td {
-	padding: 0 10px;
-	border-bottom: black solid;
+	padding: 0 2px;
+	border: black solid;
+	word-wrap: break-word;
+	vertical-align: top;
+}
+
+td.itemID {
 	
 }
 
-.itemListTable tr {
-	overflow:hidden;
-	display: table-row;
-}
+td.itemNameColumn {
 	
 }
+
+td.itemURLColumn {
+	
+}
+
+td.itemPriceColumn {
+	
+}
+
+td.itemStock {
+	
+}
+
+td.itemDescription {
+	
+}
+
+
+
+
+
+
+
+
+
+

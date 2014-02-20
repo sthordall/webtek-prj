@@ -178,7 +178,7 @@
 	<complexType name="itemDescription">
 		<sequence>
 			<element ref="w:document"/>
-			<any minOccurs="0" />
+			<!--any minOccurs="0" /-->
 		</sequence>
 	</complexType>
 	
