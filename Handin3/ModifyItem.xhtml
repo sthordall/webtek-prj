@@ -8,10 +8,10 @@
 	xmlns:f="http://java.sun.com/jsf/core" template="template.xhtml">
 
 	<ui:define name="content">
-		<!-- <f:metadata>
-    <f:viewParam name="itemID"
-        value="#{Item.itemID}" />
-	</f:metadata> -->
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{Item.RetrieveItemToModify}"/>
+			<f:viewParam name="itemID" value="#{Item.itemID}" />
+		</f:metadata>
 		<h1>Modify Item</h1>
 		<h:body>
 
@@ -21,7 +21,15 @@
 				<label>itemID</label>
 				<h:inputText value="#{Item.itemID}"></h:inputText>
 				<br></br>
-
+				<label>ItemDescription</label>
+				<h:inputTextarea value="#{Item.itemDescription}"></h:inputTextarea>
+				<br></br>
+				<label>itemPrice</label>
+				<h:inputText value="#{Item.itemPrice}"></h:inputText>
+				<br></br>
+				<label>Link</label>
+				<h:inputText value="#{Item.itemURL}"></h:inputText>
+				<h:commandButton value="Save Item" action="#{Item.SaveItemToModify}"></h:commandButton>
 			</h:form>
 		</h:body>
 

@@ -16,10 +16,9 @@ public class ModifyItem implements Serializable{
 	
 	private static final long serialVersionUID = -7405929614749438260L;
 
-	@ManagedProperty(value="#{itemBean}")
-	
-	private String itemId;
-	private String itemName;
+	@ManagedProperty(value="#{Item}")
+	private Item BeanItem;
+
 	
 //	@PostConstruct
 //	public void Init(){
@@ -30,6 +29,8 @@ public class ModifyItem implements Serializable{
 	public ModifyItem(){
 		System.out.println("ModifyItem Initiated");
 	}
+	
+
 	
 //	public String getItemId(){
 //		if(itemBean != null){

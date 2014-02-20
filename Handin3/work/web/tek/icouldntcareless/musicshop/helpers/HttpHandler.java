@@ -54,7 +54,7 @@ public class HttpHandler {
 		}
 
 		if (con.getResponseCode() != 200) {
-			System.out.print("An network error occurred: "
+			System.out.println("An network error occurred: "
 					+ con.getResponseCode() + " - " + con.getResponseMessage());
 		}
 

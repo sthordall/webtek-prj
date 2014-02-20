@@ -12,7 +12,11 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaderJDOMFactory;
 import org.jdom2.input.sax.XMLReaderXSDFactory;
 
+import web.tek.icouldntcareless.musicshop.beans.Item;
+
+
 public class XMLParser {
+	
 	public Element getRootElement(File xml, File schema) throws JDOMException,
 			IOException {
 		XMLReaderJDOMFactory schemafac = new XMLReaderXSDFactory(schema);
@@ -22,6 +26,22 @@ public class XMLParser {
 		return document.getRootElement();
 
 	}
+	
+//	public Document GenerateDocumentFromItem(Item item, Namespace namespace, String shopKey){
+//		Element modifyitem = new Element("modifyItem");
+//		modifyitem.addNamespaceDeclaration(namespace);
+//		modifyitem.setNamespace(namespace);
+//		
+//		modifyitem.addContent(new Element("shopKey").setText(shopKey)
+//				.setNamespace(namespace));
+//		modifyitem.addContent(new Element("itemID").setText(item.getItemID()));
+//		modifyitem.addContent(new Element("itemName").setText(item.getItemName()));
+//		modifyitem.addContent(new Element("itemPrice").setText(item.getItemPrice()));
+//		modifyitem.addContent(new Element("itemURL").setText(item.getItemURL()));
+//		modifyitem.addContent(new Element("itemDescription").setText(item.getItemDescription()));
+//		
+//		return new Document(modifyitem);
+//	}
 	
 	public Document getCreateItemRequest(Element item, String shopKey,
 			Namespace namespace) {
