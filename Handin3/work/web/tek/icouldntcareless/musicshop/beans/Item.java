@@ -55,14 +55,14 @@ public class Item implements Serializable {
 
 		// String validatorPath =
 		// "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
-		String validatorPath = "WEB-INF/xmlSchema/cloud.xsd";
-		// String validatorPath = "WebTekProject" + File.separator + "Handin3"+
-		// File.separator + "WEB-INF" + File.separator + "xmlSchema" +
-		// File.separator + "cloud.xsd";
-		System.out.println(validatorPath);
-		Path xmlpath = Paths.get(validatorPath);
-
-		System.out.println(xmlpath);
+//		String validatorPath = "WEB-INF/xmlSchema/cloud.xsd";
+//		// String validatorPath = "WebTekProject" + File.separator + "Handin3"+
+//		// File.separator + "WEB-INF" + File.separator + "xmlSchema" +
+//		// File.separator + "cloud.xsd";
+//		System.out.println(validatorPath);
+//		Path xmlpath = Paths.get(validatorPath);
+//
+//		System.out.println(xmlpath);
 
 		Document createDocument = xmlParser.CreateDocItemFromItemName(
 				this.itemName, ApplicationConstants.SHOPKEY,
@@ -73,7 +73,7 @@ public class Item implements Serializable {
 		// Validating Document to Persist up to cloud
 		try {
 			outputter.output(createDocument, System.out);
-			xmlValidator.validateXML(createDocument, xmlpath);
+//			xmlValidator.validateXML(createDocument, xmlpath);
 			if (httpHandler.outputXMLonHTTP("POST", new URL(
 					ApplicationConstants.CREATEITEM), createDocument) != false) {
 				return "itemCreated";
