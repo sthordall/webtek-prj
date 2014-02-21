@@ -6,6 +6,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+/**
+ * Customer class is used for login purposes on the site.
+ * When a user types username and password in the form, 
+ * it is stored in this class' fields.
+ * 
+ * @author Jacob Mulvad
+ */
 @ManagedBean(name = "Customer", eager = true)
 @SessionScoped
 public class Customer implements Serializable {
