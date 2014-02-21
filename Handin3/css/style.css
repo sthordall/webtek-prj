@@ -139,7 +139,7 @@ div.managementMenu {
 }
 
 .itemListTable {
-	margin: 0 auto;
+	margin: 0 20px;
 	text-align: center;
 	border-collapse: collapse;
 	background-color: silver;
@@ -172,8 +172,8 @@ div.managementMenu {
 
 .modifyitemLabel{
 	align: left;
-	
 }
+
 
 .modifyitemDescriptionBox{
 	border: solid;
@@ -215,8 +215,12 @@ td.itemStock {
 	
 }
 
-td.itemDescription {
-	
+td.itemDescription ul {
+	list-style-type: disc;
+}
+
+td.itemDescription  {
+	text-align: left;
 }
 
 
