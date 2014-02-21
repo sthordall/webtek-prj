@@ -76,6 +76,11 @@ public class LoginVerifier implements Serializable {
 		
 		System.out.println("Username: "+customer.getCustomerName() + "\n" + "Password: "+customer.getCustomerPass());
 		
+		//Checking if username is Admin
+		if(customer.getCustomerName()=="iccladmin"){
+			customer.setCustomerIsAdmin(true);
+		}
+		
 		Document doc = xmlParser.getLoginRequest(customer.getCustomerName(),
 				customer.getCustomerPass());
 		
