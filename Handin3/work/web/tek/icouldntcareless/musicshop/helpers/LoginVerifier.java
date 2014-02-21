@@ -112,6 +112,8 @@ public class LoginVerifier implements Serializable {
 
 	public Document loginToAdminsite() {
 
+		System.out.println("loginToAdminsite invoked");
+		
 		HttpHandler httphandler = new HttpHandler();
 		XMLParser xmlParser = new XMLParser();
 		URL url = null;
@@ -127,8 +129,11 @@ public class LoginVerifier implements Serializable {
 				customer.getCustomerPass());
 
 		try {
-//			Document loginDocumentResponse = httphandler.outputXMLonHTTP(
-//					"POST", url, doc);
+			Boolean loginDocumentResponse = httphandler.outputXMLonHTTP(
+					"POST", url, doc);
+			
+			//Test ved output to System.out
+			System.out.println(loginDocumentResponse.booleanValue());
 //			ResponseElement = loginDocumentResponse.getRootElement();
 
 			if (ResponseElement == null)

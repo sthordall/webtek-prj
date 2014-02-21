@@ -15,7 +15,8 @@
 			<h:inputText id="username" value="#{Customer.customerID}" title="Username"/>
 			<br/>
 			<h:outputLabel value="Password: "/>
-			<h:inputSecret redisplay="false" value="#{jsfexample.password}" />
+			<h:inputSecret redisplay="false" value="#{Customer.customerPass}" />
+			<h:commandButton value="submit" type="submit" action="#{LoginVerifier.loginToAdminsite}" />
 		</h:form>
 	</ui:define>
 </ui:composition>
