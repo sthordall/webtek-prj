@@ -58,7 +58,9 @@ public class Item implements Serializable {
 		Validator xmlValidator = new Validator();
 		HttpHandler httpHandler = new HttpHandler();
 		
-		String validatorPath = "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
+		//String validatorPath = "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
+		String validatorPath = "/Users/dxong/git/WebTekProject/Handin3/WEB-INF/xmlSchema/cloud.xsd";
+		//String validatorPath = "WebTekProject" + File.separator + "Handin3"+ File.separator + "WEB-INF" + File.separator + "xmlSchema" + File.separator + "cloud.xsd";
 		System.out.println(validatorPath);
 		Path xmlpath = Paths.get(validatorPath);
 		
@@ -136,6 +138,23 @@ public class Item implements Serializable {
 			return "NotModified";
 		}
 		return "NotModified";
+	}
+	
+	public String ItemStockAdjust(){
+		System.out.println("ItemStockAdjust called...");
+		
+		HttpHandler handler = new HttpHandler();
+		
+		Element modifyitem = new Element("modifyItem");
+		modifyitem.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+		modifyitem.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		System.out.println(this.itemURL);
+		modifyitem.addContent(new Element("shopKey").setText(ApplicationConstants.SHOPKEY)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		modifyitem.addContent(new Element("itemID").setText(this.itemID).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		
+		return "hej";
+		
 	}
 	
 	

@@ -26,8 +26,8 @@
         <to-view-id>/Management.xhtml</to-view-id>
         <redirect></redirect>
       </navigation-case>
-            <navigation-case>
-        <from-outcome>NotModified</from-outcome>
+            <navigation-case>          
+        <from-outcome>itemNotCreated</from-outcome>
         <to-view-id>/CreateItem.xhtml</to-view-id>
       </navigation-case>
     </navigation-rule>
