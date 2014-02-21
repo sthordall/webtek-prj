@@ -63,7 +63,8 @@ public class LoginVerifier implements Serializable {
 		System.out.println("Username: "+customer.getCustomerName() + "\n" + "Password: "+customer.getCustomerPass());
 		
 		//Checking if username is Admin
-		if(customer.getCustomerName()=="iccladmin"){
+		if(customer.getCustomerName().equalsIgnoreCase("iccladmin")){
+			System.out.println("HEJ MED DIG");
 			customer.setCustomerIsAdmin(true);
 		}
 		
