@@ -30,6 +30,20 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/LoginFailed.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Login_Unsuccessful</from-outcome>
+			<to-view-id>/LoginFailed.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>Login_successful</from-outcome>
+			<to-view-id>/Management.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 	<navigation-rule>
 		<from-view-id>/CreateCustomer.xhtml</from-view-id>
