@@ -23,22 +23,26 @@ public class XMLParser {
 
 	}
 
-//	public Document GenerateDocumentFromItem(Item item, Namespace namespace, String shopKey){
-//		Element modifyitem = new Element("modifyItem");
-//		modifyitem.addNamespaceDeclaration(namespace);
-//		modifyitem.setNamespace(namespace);
-//		
-//		modifyitem.addContent(new Element("shopKey").setText(shopKey)
-//				.setNamespace(namespace));
-//		modifyitem.addContent(new Element("itemID").setText(item.getItemID()));
-//		modifyitem.addContent(new Element("itemName").setText(item.getItemName()));
-//		modifyitem.addContent(new Element("itemPrice").setText(item.getItemPrice()));
-//		modifyitem.addContent(new Element("itemURL").setText(item.getItemURL()));
-//		modifyitem.addContent(new Element("itemDescription").setText(item.getItemDescription()));
-//		
-//		return new Document(modifyitem);
-//	}
-	
+	// public Document GenerateDocumentFromItem(Item item, Namespace namespace,
+	// String shopKey){
+	// Element modifyitem = new Element("modifyItem");
+	// modifyitem.addNamespaceDeclaration(namespace);
+	// modifyitem.setNamespace(namespace);
+	//
+	// modifyitem.addContent(new Element("shopKey").setText(shopKey)
+	// .setNamespace(namespace));
+	// modifyitem.addContent(new Element("itemID").setText(item.getItemID()));
+	// modifyitem.addContent(new
+	// Element("itemName").setText(item.getItemName()));
+	// modifyitem.addContent(new
+	// Element("itemPrice").setText(item.getItemPrice()));
+	// modifyitem.addContent(new Element("itemURL").setText(item.getItemURL()));
+	// modifyitem.addContent(new
+	// Element("itemDescription").setText(item.getItemDescription()));
+	//
+	// return new Document(modifyitem);
+	// }
+
 	public Document getCreateItemRequest(Element item, String shopKey,
 			Namespace namespace) {
 		Element createItem = new Element("createItem");
@@ -71,9 +75,10 @@ public class XMLParser {
 		login.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
 
 		login.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
-		login.addContent(new Element("customerName").setText(username))
-				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
-		login.addContent(new Element("customerPass").setText(password));
+		login.addContent(new Element("customerName").setText(username)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		login.addContent(new Element("customerPass").setText(password)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 
 		return new Document(login);
 	}
@@ -104,40 +109,38 @@ public class XMLParser {
 
 	}
 
-	public String getDescriptionInHtml(Element itemDescription)
-			throws JDOMException, IOException {
-		String descriptionStr = "";
-
-		for (Element descriptionChild : itemDescription.getChildren()) {
-
-			switch (descriptionChild.getName()) {
-			case "document":
-				descriptionChild.setName("div");
-				break;
-			case "bold":
-				descriptionChild.setName("b");
-				break;
-			case "italics":
-				descriptionChild.setName("i");
-				break;
-			case "list":
-				descriptionChild.setName("ul");
-				break;
-			case "item":
-				descriptionChild.setName("li");
-				break;
-			default:
-				break;
-			}
-
-			descriptionChild
-					.setNamespace(ApplicationConstants.JSFHTMLNAMESPACE);
-
-			descriptionStr = descriptionStr + descriptionChild.getText()
-					+ getDescriptionInHtml(descriptionChild);
+	public String generateItemDescriptionHTML(Element root) {
+		String result = "";
+		result += generateHTMLFromElement(root, true);
+		result += root.getText();
+		List<Element> children = root.getChildren();
+		for (Element child : children) {
+			result += generateItemDescriptionHTML(child);
 		}
+		result += generateHTMLFromElement(root, false);
+		return result;
+	}
 
-		return descriptionStr;
+	private String generateHTMLFromElement(Element element, Boolean start) {
+		String result = "<";
+		String tag = element.getName();
+		if (!start) {
+			result += "/";
+		}
+		if (tag == "document") {
+			result += "div>";
+		} else if (tag == "italics") {
+			result += "i>";
+		} else if (tag == "bold") {
+			result += "b>";
+		} else if (tag == "list") {
+			result += "ul>";
+		} else if (tag == "item") {
+			result += "li>";
+		} else {
+			return "";
+		}
+		return result;
 	}
 
 }

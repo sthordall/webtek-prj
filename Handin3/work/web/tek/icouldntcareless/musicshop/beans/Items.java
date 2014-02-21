@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.jdom2.Element;
+import org.jdom2.output.XMLOutputter;
 
 import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
 import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
@@ -20,6 +21,7 @@ public class Items implements Serializable {
 
 	private HttpHandler httpHandler;
 	private XMLParser xmlParser;
+	private XMLOutputter xmlOutputter;
 
 	private static final long serialVersionUID = 2597636401051332599L;
 
@@ -29,6 +31,7 @@ public class Items implements Serializable {
 	public void init() {
 		httpHandler = new HttpHandler();
 		xmlParser = new XMLParser();
+		xmlOutputter = new XMLOutputter();
 
 		try {
 			URL requestUrl = new URL(ApplicationConstants.LISTITEMS);
@@ -42,6 +45,13 @@ public class Items implements Serializable {
 
 				for (Element itemChild : responseRoot.getChildren()) {
 
+					String itemDescription = xmlParser
+							.generateItemDescriptionHTML(itemChild
+									.clone()
+									.getChild(
+											"itemDescription",
+											ApplicationConstants.WEBTEKNAMESPACE));
+
 					itemList.add(new Item(itemChild.getChildText("itemID",
 							ApplicationConstants.WEBTEKNAMESPACE), itemChild
 							.getChildText("itemName",
@@ -52,9 +62,52 @@ public class Items implements Serializable {
 									ApplicationConstants.WEBTEKNAMESPACE),
 							itemChild.getChildText("itemStock",
 									ApplicationConstants.WEBTEKNAMESPACE),
-							xmlParser.getDescriptionInHtml(itemChild.getChild(
-									"itemDescription",
-									ApplicationConstants.WEBTEKNAMESPACE))));
+							itemDescription));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("An error occurred: " + e.getMessage());
+		}
+	}
+
+	public void initForModify() {
+		httpHandler = new HttpHandler();
+		xmlParser = new XMLParser();
+		xmlOutputter = new XMLOutputter();
+
+		try {
+			URL requestUrl = new URL(ApplicationConstants.LISTITEMS);
+			Element responseRoot = httpHandler.HttpRequest("GET", requestUrl)
+					.getRootElement();
+
+			if (responseRoot == null) {
+				throw new Exception("Response from itemList request was null");
+			} else {
+				itemList = new ArrayList<Item>();
+
+				for (Element itemChild : responseRoot.getChildren()) {
+
+					String itemDescription = xmlOutputter
+							.outputString(itemChild
+									.clone()
+									.getChild(
+											"itemDescription",
+											ApplicationConstants.WEBTEKNAMESPACE)
+									.getChild(
+											"document",
+											ApplicationConstants.WEBTEKNAMESPACE));
+
+					itemList.add(new Item(itemChild.getChildText("itemID",
+							ApplicationConstants.WEBTEKNAMESPACE), itemChild
+							.getChildText("itemName",
+									ApplicationConstants.WEBTEKNAMESPACE),
+							itemChild.getChildText("itemURL",
+									ApplicationConstants.WEBTEKNAMESPACE),
+							itemChild.getChildText("itemPrice",
+									ApplicationConstants.WEBTEKNAMESPACE),
+							itemChild.getChildText("itemStock",
+									ApplicationConstants.WEBTEKNAMESPACE),
+							itemDescription));
 				}
 			}
 		} catch (Exception e) {

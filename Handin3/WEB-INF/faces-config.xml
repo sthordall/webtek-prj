@@ -18,6 +18,19 @@
         <to-view-id>/ModifyItem.xhtml</to-view-id>
       </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FAILED</from-outcome>
+			<to-view-id>/Login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOGGED IN</from-outcome>
+			<to-view-id>/Management.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
     
        <navigation-rule>
       <from-view-id>/CreateItem.xhtml</from-view-id>

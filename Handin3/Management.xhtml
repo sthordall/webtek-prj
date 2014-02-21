@@ -6,9 +6,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:customjsf = "http://dWebTek.dk/jsf/tag" template="template.xhtml">
+	xmlns:customjsf="http://dWebTek.dk/jsf/tag" template="template.xhtml">
 	<ui:define name="content">
-		<h:form>
+		<h:form rendered="#{Customer.customerIsAdmin}">
 			<h1>Music Shop - Management</h1>
 			<div class="managementMenu">
 				<a href="">Create Customer</a>
@@ -20,7 +20,7 @@
 				columnClasses="itemID,itemName,itemURL,itemPrice,itemStock,itemDescription">
 				<h:column width="20px">
 					<f:facet name="header" width="auto">ID</f:facet>
-					<h:outputText value="#{Item.itemID}"></h:outputText> 
+					<h:outputText value="#{Item.itemID}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Name</f:facet>
@@ -40,13 +40,14 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Description</f:facet>
-					<h:outputText value="#{Item.itemDescription}"></h:outputText>
+					<h:outputText escape="false" value="#{Item.itemDescription}"></h:outputText>
 				</h:column>
 				<h:column>
 					<a href="/WebTekMusicShop/ModifyItem.xhtml?ItemID=#{Item.itemID}">Modify</a>
 				</h:column>
 				<h:column>
-					<a href="/WebTekMusicShop/AdjustStock.xhtml?ItemID=#{Item.itemID}">Adjust Stock</a>
+					<a href="/WebTekMusicShop/AdjustStock.xhtml?ItemID=#{Item.itemID}">Adjust
+						Stock</a>
 				</h:column>
 				<!-- h:column>
 					<h:commandButton id="deleteItemButton" value="Delete"></h:commandButton>
