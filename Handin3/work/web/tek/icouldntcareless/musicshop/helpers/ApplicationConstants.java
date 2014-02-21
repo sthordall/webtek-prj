@@ -19,5 +19,6 @@ public class ApplicationConstants {
 	public static final String MODIFYITEM = CLOUDURL + "/modifyItem";
 	public static final String LISTITEMS = CLOUDURL + "/listItems?shopID=" + SHOPID;
 	public static final String LISTCUSTOMERS = CLOUDURL + "/listCustomers";
+	public static final String LOGIN = CLOUDURL + "/login";
 
 }

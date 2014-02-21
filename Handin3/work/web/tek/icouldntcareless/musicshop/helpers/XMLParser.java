@@ -55,6 +55,19 @@ public class XMLParser {
 
 		return new Document(createItem);
 	}
+	
+	public Document CreateDocItemFromItemName(String itemName, String shopKey,
+			Namespace namespace) {
+		Element createItem = new Element("createItem");
+		createItem.addNamespaceDeclaration(namespace);
+
+		createItem.setNamespace(namespace);
+		createItem.addContent(new Element("shopKey").setText(shopKey)
+				.setNamespace(namespace));
+		createItem.addContent(new Element("itemName").setText(itemName).setNamespace(namespace));
+
+		return new Document(createItem);
+	}
 
 	public Document getLoginRequest(String username, String password) {
 

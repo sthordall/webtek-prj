@@ -3,6 +3,8 @@ package web.tek.icouldntcareless.musicshop.beans;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -14,6 +16,8 @@ import org.jdom2.output.XMLOutputter;
 
 import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
 import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
+import web.tek.icouldntcareless.musicshop.helpers.Validator;
+import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
 
 @ManagedBean(name = "Item", eager = true)
 @SessionScoped
@@ -44,6 +48,40 @@ public class Item implements Serializable {
 		this.itemPrice = itemPrice;
 		this.itemStock = itemStock;
 		this.itemDescription = itemDescription;
+	}
+
+	public String CreateItem() {
+		XMLParser xmlParser = new XMLParser();
+		Validator xmlValidator = new Validator();
+		HttpHandler httpHandler = new HttpHandler();
+
+		String validatorPath = "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
+		System.out.println(validatorPath);
+		Path xmlpath = Paths.get(validatorPath);
+
+		System.out.println(xmlpath);
+
+		Document createDocument = xmlParser.CreateDocItemFromItemName(
+				this.itemName, ApplicationConstants.SHOPKEY,
+				ApplicationConstants.WEBTEKNAMESPACE);
+
+		XMLOutputter outputter = new XMLOutputter();
+
+		// Validating Document to Persist up to cloud
+		try {
+			outputter.output(createDocument, System.out);
+			xmlValidator.validateXML(createDocument, xmlpath);
+			if (httpHandler.outputXMLonHTTP("POST", new URL(
+					ApplicationConstants.CREATEITEM), createDocument) != false) {
+				return "itemCreated";
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return "itemNotCreated";
+		}
+		return "itemNotCreated";
 	}
 
 	public void RetrieveItemToModify() {
@@ -82,8 +120,6 @@ public class Item implements Serializable {
 				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 		modifyitem.addContent(new Element("itemURL").setText(this.itemURL)
 				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		// modifyitem.addContent(new
-		// Element("itemDescription").setText(this.itemDescription).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 
 		try {
 			SAXBuilder saxBuilder = new SAXBuilder();

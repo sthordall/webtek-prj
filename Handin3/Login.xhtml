@@ -11,11 +11,12 @@
 		<h1>Login</h1>
 		<h:form id="jsftags">
 			<h:outputLabel value="Username: "/>
-			<h:outputLabel value="#{Customer.customerID}" />
 			<h:inputText id="username" value="#{Customer.customerID}" title="Username"/>
 			<br/>
 			<h:outputLabel value="Password: "/>
-			<h:inputSecret redisplay="false" value="#{jsfexample.password}" />
+			<h:inputSecret redisplay="false" value="#{Customer.customerPass}" />
+			<br/>
+			<h:commandButton value="Login" type="submit" action="#{LoginVerifier.loginToAdminsite}" />
 		</h:form>
 	</ui:define>
 </ui:composition>

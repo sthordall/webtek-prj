@@ -18,7 +18,7 @@ public class Customer implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		customerID = "Hans";
+
 		customerIsAdmin = true;
 	}
 

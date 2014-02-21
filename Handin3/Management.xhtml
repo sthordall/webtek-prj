@@ -11,7 +11,9 @@
 		<h:form rendered="#{Customer.customerIsAdmin}">
 			<h1>Music Shop - Management</h1>
 			<div class="managementMenu">
-				<a href="">Create Customer</a> <br /> <a href="">Create Item</a>
+				<a href="">Create Customer</a>
+				<br />
+				<a href="CreateItem.xhtml">Create Item</a>
 			</div>
 			<h:dataTable value="#{Items.itemList}" var="Item"
 				styleClass="itemListTable" headerClass="itemListTableHeader"
