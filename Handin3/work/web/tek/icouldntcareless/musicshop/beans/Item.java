@@ -2,8 +2,6 @@ package web.tek.icouldntcareless.musicshop.beans;
 
 import java.io.Serializable;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,7 +22,7 @@ import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
  */
 /**
  * @author dxong
- *
+ * 
  */
 @ManagedBean(name = "Item", eager = true)
 @SessionScoped
@@ -58,27 +56,28 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * This method is initiated via a button on CreateItem.jsf
-	 * Initiates a JDOM, with given data and persist data into cloud
-	 * @return
-	 * Success: Redirects back to Management.jsf
-	 * Fail: Redirect back to CreateItem.jsf
+	 * This method is initiated via a button on CreateItem.jsf Initiates a JDOM,
+	 * with given data and persist data into cloud
+	 * 
+	 * @return Success: Redirects back to Management.jsf Fail: Redirect back to
+	 *         CreateItem.jsf
 	 */
 	public String CreateItem() {
 		XMLParser xmlParser = new XMLParser();
 		Validator xmlValidator = new Validator();
 		HttpHandler httpHandler = new HttpHandler();
 
-//		// String validatorPath =
-//		// "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
-//		String validatorPath = "WEB-INF/xmlSchema/cloud.xsd";
-//		// String validatorPath = "WebTekProject" + File.separator + "Handin3"+
-//		// File.separator + "WEB-INF" + File.separator + "xmlSchema" +
-//		// File.separator + "cloud.xsd";
-//		System.out.println(validatorPath);
-//		Path xmlpath = Paths.get(validatorPath);
-//
-//		System.out.println(xmlpath);
+		// // String validatorPath =
+		// // "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
+		// String validatorPath = "WEB-INF/xmlSchema/cloud.xsd";
+		// // String validatorPath = "WebTekProject" + File.separator +
+		// "Handin3"+
+		// // File.separator + "WEB-INF" + File.separator + "xmlSchema" +
+		// // File.separator + "cloud.xsd";
+		// System.out.println(validatorPath);
+		// Path xmlpath = Paths.get(validatorPath);
+		//
+		// System.out.println(xmlpath);
 
 		Document createDocument = xmlParser.CreateDocItemFromItemName(
 				this.itemName, ApplicationConstants.SHOPKEY,
@@ -89,7 +88,7 @@ public class Item implements Serializable {
 		// Validating Document to Persist up to cloud
 		try {
 			outputter.output(createDocument, System.out);
-//			xmlValidator.validateXML(createDocument, xmlpath);
+			// xmlValidator.validateXML(createDocument, xmlpath);
 			if (httpHandler.outputXMLonHTTP("POST", new URL(
 					ApplicationConstants.CREATEITEM), createDocument) != false) {
 				return "itemCreated";
@@ -104,13 +103,14 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * Before ModifyItem.jsf is rendered, this method is callled to initate the page with a given itemID
+	 * Before ModifyItem.jsf is rendered, this method is callled to initate the
+	 * page with a given itemID
 	 */
 	public void RetrieveItemToModify() {
 		System.out.println("RetrieveItemToModify called...");
 		System.out.println(this.itemID);
 		Items itemlist = new Items();
-		itemlist.init();
+		itemlist.initForModify();
 		for (Item item : itemlist.getItemList()) {
 
 			if (item.itemID.equals(this.itemID)) {
@@ -124,10 +124,11 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * Method is initated via a button. Upon execution, this method tries to save the item into cloud
-	 * @return
-	 * Success: Redirects back to Management.jsf
-	 * Fail: Redibeck back to ModifyItem.jsf
+	 * Method is initated via a button. Upon execution, this method tries to
+	 * save the item into cloud
+	 * 
+	 * @return Success: Redirects back to Management.jsf Fail: Redibeck back to
+	 *         ModifyItem.jsf
 	 */
 	public String SaveItemToModify() {
 		System.out.println("SaveItemToModify called...");
@@ -174,7 +175,8 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * Before AdjustStock.jsf is rendered, this method is callled to initate the page with a given itemID
+	 * Before AdjustStock.jsf is rendered, this method is callled to initate the
+	 * page with a given itemID
 	 */
 	public void RetrieveItemToAdjust() {
 		System.out.println("RetrieveItemToAdjust called...");
@@ -192,11 +194,11 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * Method is called via button on AdjustStock.jsf.
-	 * The method validates the input if it contains integer only
-	 * @return
-	 * Success: Redirects back to Management.jsf
-	 * Fail: Redirect back to AdjustStock.jsf
+	 * Method is called via button on AdjustStock.jsf. The method validates the
+	 * input if it contains integer only
+	 * 
+	 * @return Success: Redirects back to Management.jsf Fail: Redirect back to
+	 *         AdjustStock.jsf
 	 */
 	public String ItemStockAdjust() {
 		System.out.println("ItemStockAdjust called...");
