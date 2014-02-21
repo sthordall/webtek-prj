@@ -16,10 +16,10 @@ public class Customer implements Serializable {
 	private String customerName;
 	private String customerPass;
 	
-//	@PostConstruct
-//	public void init() {
-//		customerID="Hans";
-//	}
+	@PostConstruct
+	public void init() {
+		customerID="";
+	}
 	
 	public String getCustomerPass() {
 		return customerPass;
