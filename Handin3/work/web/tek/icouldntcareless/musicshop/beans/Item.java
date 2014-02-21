@@ -55,7 +55,7 @@ public class Item implements Serializable {
 		XMLParser xmlParser = new XMLParser();
 		Validator xmlValidator = new Validator();
 		
-		String validatorPath = "cloud.xsd";
+		String validatorPath = "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
 		System.out.println(validatorPath);
 		Path xmlpath = Paths.get(validatorPath);
 		
