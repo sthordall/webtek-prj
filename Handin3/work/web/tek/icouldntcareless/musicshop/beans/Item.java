@@ -1,19 +1,15 @@
 package web.tek.icouldntcareless.musicshop.beans;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
+import java.io.StringReader;
 import java.net.URL;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.ws.rs.POST;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
 import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
@@ -36,8 +32,9 @@ public class Item implements Serializable {
 
 	private String itemDescription;
 
-	public Item(){}
-	
+	public Item() {
+	}
+
 	public Item(String itemID, String itemName, String itemURL,
 			String itemPrice, String itemStock, String itemDescription) {
 		super();
@@ -48,51 +45,68 @@ public class Item implements Serializable {
 		this.itemStock = itemStock;
 		this.itemDescription = itemDescription;
 	}
-	
-	public void RetrieveItemToModify(){
+
+	public void RetrieveItemToModify() {
 		System.out.println("RetrieveItemToModify called...");
 		System.out.println(this.itemID);
 		Items itemlist = new Items();
-		itemlist.init();		
+		itemlist.initForModify();
 		for (Item item : itemlist.getItemList()) {
-			
-			if(item.itemID.equals(this.itemID))
-			{
+
+			if (item.itemID.equals(this.itemID)) {
 				System.out.println("itemFound");
 				this.itemName = item.itemName;
 				this.itemDescription = item.itemDescription;
 				this.itemPrice = item.itemPrice;
 				this.itemURL = item.itemURL;
-			}	
+			}
 		}
 	}
-	
-	public String SaveItemToModify(){
+
+	public String SaveItemToModify() {
 		System.out.println("SaveItemToModify called...");
 		HttpHandler handler = new HttpHandler();
 		Element modifyitem = new Element("modifyItem");
-		modifyitem.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+		modifyitem
+				.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
 		modifyitem.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
 		System.out.println(this.itemURL);
-		modifyitem.addContent(new Element("shopKey").setText(ApplicationConstants.SHOPKEY)
+		modifyitem.addContent(new Element("shopKey").setText(
+				ApplicationConstants.SHOPKEY).setNamespace(
+				ApplicationConstants.WEBTEKNAMESPACE));
+		modifyitem.addContent(new Element("itemID").setText(this.itemID)
 				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		modifyitem.addContent(new Element("itemID").setText(this.itemID).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		modifyitem.addContent(new Element("itemName").setText(this.itemName).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		modifyitem.addContent(new Element("itemPrice").setText(this.itemPrice).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		modifyitem.addContent(new Element("itemURL").setText(this.itemURL).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-//		modifyitem.addContent(new Element("itemDescription").setText(this.itemDescription).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		
-		modifyitem.addContent(new Element("itemDescription").addContent(new Element("document").setText(
-				this.itemDescription).setNamespace(ApplicationConstants.WEBTEKNAMESPACE)).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		
+		modifyitem.addContent(new Element("itemName").setText(this.itemName)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		modifyitem.addContent(new Element("itemPrice").setText(this.itemPrice)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		modifyitem.addContent(new Element("itemURL").setText(this.itemURL)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		// modifyitem.addContent(new
+		// Element("itemDescription").setText(this.itemDescription).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+
+		try {
+			SAXBuilder saxBuilder = new SAXBuilder();
+
+			modifyitem.addContent(new Element("itemDescription").addContent(
+					saxBuilder.build(new StringReader(this.itemDescription))
+							.getRootElement().clone()).setNamespace(
+					ApplicationConstants.WEBTEKNAMESPACE));
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
 		Document document = new Document(modifyitem);
 		XMLOutputter outputter = new XMLOutputter();
-		
+
 		try {
 			outputter.output(document, System.out);
-			
-			//Returns null if the responseCode is not 200 when persisting data up to the cloud
-			if(handler.outputXMLonHTTP("POST", new URL(ApplicationConstants.MODIFYITEM), document) != false){
+
+			// Returns null if the responseCode is not 200 when persisting data
+			// up to the cloud
+			if (handler.outputXMLonHTTP("POST", new URL(
+					ApplicationConstants.MODIFYITEM), document) != false) {
 				return "Modified";
 			}
 		} catch (Exception e) {
@@ -101,8 +115,6 @@ public class Item implements Serializable {
 		}
 		return "NotModified";
 	}
-	
-	
 
 	public String getItemID() {
 		return itemID;
