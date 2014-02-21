@@ -8,6 +8,7 @@ import java.net.URL;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.ws.rs.POST;
 
 import org.jdom2.Document;
@@ -19,7 +20,7 @@ import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
 import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
 
 @ManagedBean(name = "Item", eager = true)
-@RequestScoped
+@SessionScoped
 public class Item implements Serializable {
 	private static final long serialVersionUID = 148246321600366013L;
 
@@ -66,7 +67,7 @@ public class Item implements Serializable {
 		}
 	}
 	
-	public void SaveItemToModify(){
+	public String SaveItemToModify(){
 		System.out.println("SaveItemToModify called...");
 		HttpHandler handler = new HttpHandler();
 		Element modifyitem = new Element("modifyItem");
@@ -86,19 +87,19 @@ public class Item implements Serializable {
 		
 		Document document = new Document(modifyitem);
 		XMLOutputter outputter = new XMLOutputter();
-		try {
-			outputter.output(document, System.out);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
 		try {
-			handler.outputXMLonHTTP("POST", new URL(ApplicationConstants.MODIFYITEM), document);
+			outputter.output(document, System.out);
+			
+			//Returns null if the responseCode is not 200 when persisting data up to the cloud
+			if(handler.outputXMLonHTTP("POST", new URL(ApplicationConstants.MODIFYITEM), document) != false){
+				return "Modified";
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return "NotModified";
 		}
+		return "NotModified";
 	}
 	
 	

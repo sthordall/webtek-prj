@@ -31,7 +31,7 @@ public class HttpHandler {
 	 * @throws IOException
 	 * @throws JDOMException
 	 */
-	public Document outputXMLonHTTP(String httpRequestType, URL url,
+	public boolean outputXMLonHTTP(String httpRequestType, URL url,
 			Document docToOutput) throws ProtocolException, IOException,
 			JDOMException {
 		XMLOutputter outputter = new XMLOutputter();
@@ -44,11 +44,11 @@ public class HttpHandler {
 
 		outputter.output(docToOutput, con.getOutputStream());
 
-		Document responseDocument = null;
+//		Document responseDocument = null;
 
 		try {
-			SAXBuilder builder = new SAXBuilder();
-			responseDocument = builder.build((InputStream) con.getContent());
+//			SAXBuilder builder = new SAXBuilder();
+//			responseDocument = builder.build((InputStream) con.getContent());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -56,11 +56,12 @@ public class HttpHandler {
 		if (con.getResponseCode() != 200) {
 			System.out.println("An network error occurred: "
 					+ con.getResponseCode() + " - " + con.getResponseMessage());
+			return false;
 		}
 
 		con.disconnect();
 
-		return responseDocument;
+		return true;
 	}
 	
 	/**

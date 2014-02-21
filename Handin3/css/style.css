@@ -170,6 +170,31 @@ div.managementMenu {
 	width: 80px;
 }
 
+.modifyitemLabel{
+	align: left;
+	
+}
+
+.modifyitemDescriptionBox{
+	border: solid;
+	border-color: black;
+	height: 150px;
+	width: 500px;
+}
+
+.modifyitemRegularTextBox{
+	border: solid;
+	border-color: black;
+	height: 20px;
+	width: 500px;
+}
+
+.modifyitemButton{
+	border: solid;
+	border-color: black;
+	background-color: white;
+}
+
 td.itemID {
 	
 }
