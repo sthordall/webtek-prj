@@ -136,20 +136,57 @@ public class Item implements Serializable {
 		return "NotModified";
 	}
 	
+	public void RetrieveItemToAdjust(){
+		System.out.println("RetrieveItemToAdjust called...");
+		System.out.println(this.itemID);
+		Items itemlist = new Items();
+		itemlist.init();		
+		for (Item item : itemlist.getItemList()) {
+			
+			if(item.itemID.equals(this.itemID))
+			{
+				System.out.println("itemFound");
+				this.itemName = item.itemName;
+				this.itemStock = item.itemStock;
+			}	
+		}
+	}
+	
 	public String ItemStockAdjust(){
 		System.out.println("ItemStockAdjust called...");
 		
+		String regex = "[0-9]+"; 
+		
+		if(!this.itemStock.matches(regex)){
+			return "stockNotAdjusted";
+		}
+		
 		HttpHandler handler = new HttpHandler();
 		
-		Element modifyitem = new Element("modifyItem");
-		modifyitem.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
-		modifyitem.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
-		System.out.println(this.itemURL);
-		modifyitem.addContent(new Element("shopKey").setText(ApplicationConstants.SHOPKEY)
+		Element adjustStock = new Element("adjustItemStock");
+		adjustStock.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+		adjustStock.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+	
+		adjustStock.addContent(new Element("shopKey").setText(ApplicationConstants.SHOPKEY)
 				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
-		modifyitem.addContent(new Element("itemID").setText(this.itemID).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		adjustStock.addContent(new Element("itemID").setText(this.itemID).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		adjustStock.addContent(new Element("adjustment").setText(this.itemStock).setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 		
-		return "hej";
+		Document document = new Document(adjustStock);
+		XMLOutputter outputter = new XMLOutputter();
+		
+		try {
+			outputter.output(document, System.out);
+			
+			//Returns null if the responseCode is not 200 when persisting data up to the cloud
+			if(handler.outputXMLonHTTP("POST", new URL(ApplicationConstants.ADJUSTSTOCK), document) != false){
+				return "stockAdjusted";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "stockNotAdjusted";
+		}
+		return "stockNotAdjusted";
 		
 	}
 	

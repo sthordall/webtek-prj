@@ -44,4 +44,18 @@
         <to-view-id>/CreateItem.xhtml</to-view-id>
       </navigation-case>
     </navigation-rule>
+    
+           <navigation-rule>
+      <from-view-id>/AdjustStock.xhtml</from-view-id>
+      <navigation-case>
+        <from-outcome>stockAdjusted</from-outcome>
+        <to-view-id>/Management.xhtml</to-view-id>
+        <redirect></redirect>
+      </navigation-case>
+            <navigation-case>          
+        <from-outcome>stockNotAdjusted</from-outcome>
+        <to-view-id>/AdjustStock.xhtml</to-view-id>
+        <redirect></redirect>
+      </navigation-case>
+    </navigation-rule>
 </faces-config>

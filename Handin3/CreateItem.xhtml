@@ -7,17 +7,14 @@
 	template="template.xhtml">
 
 	<ui:define name="content">
-		<!-- <f:metadata> <f:viewParam name="itemID" value="#{Item.itemID}" /> 
-			</f:metadata> -->
+		<!-- <h:form rendered="#{Customer.customerIsAdmin}"> -->
+		<h:form rendered="true">
 		<h1>Create New Item</h1>
 		<h:body>
-		
-		<h:form>
 		<label>Name</label>
-		<h:inputText value="#{Item.itemName}" ></h:inputText>
-		<h:commandButton value="Create Item" action="#{Item.CreateItem}"></h:commandButton>
-		</h:form>
-		
+		<h:inputText class="modifyitemRegularTextBox" value="#{Item.itemName}" ></h:inputText>
+		<h:commandButton class="modifyitemButton" value="Create Item" action="#{Item.CreateItem}"></h:commandButton>	
 		</h:body>
+		</h:form>
 	</ui:define>
 </ui:composition>
