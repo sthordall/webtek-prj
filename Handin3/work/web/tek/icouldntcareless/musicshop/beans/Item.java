@@ -17,6 +17,15 @@ import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
 import web.tek.icouldntcareless.musicshop.helpers.Validator;
 import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
 
+/**
+ * @author dxong
+ * The class is our MODEL, which is responsible/handling Modify and Create Items
+ * and Adjusting the stock on an item.
+ */
+/**
+ * @author dxong
+ *
+ */
 @ManagedBean(name = "Item", eager = true)
 @SessionScoped
 public class Item implements Serializable {
@@ -48,13 +57,20 @@ public class Item implements Serializable {
 		this.itemDescription = itemDescription;
 	}
 
+	/**
+	 * This method is initiated via a button on CreateItem.jsf
+	 * Initiates a JDOM, with given data and persist data into cloud
+	 * @return
+	 * Success: Redirects back to Management.jsf
+	 * Fail: Redirect back to CreateItem.jsf
+	 */
 	public String CreateItem() {
 		XMLParser xmlParser = new XMLParser();
 		Validator xmlValidator = new Validator();
 		HttpHandler httpHandler = new HttpHandler();
 
-		// String validatorPath =
-		// "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
+//		// String validatorPath =
+//		// "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
 //		String validatorPath = "WEB-INF/xmlSchema/cloud.xsd";
 //		// String validatorPath = "WebTekProject" + File.separator + "Handin3"+
 //		// File.separator + "WEB-INF" + File.separator + "xmlSchema" +
@@ -87,6 +103,9 @@ public class Item implements Serializable {
 		return "itemNotCreated";
 	}
 
+	/**
+	 * Before ModifyItem.jsf is rendered, this method is callled to initate the page with a given itemID
+	 */
 	public void RetrieveItemToModify() {
 		System.out.println("RetrieveItemToModify called...");
 		System.out.println(this.itemID);
@@ -104,6 +123,12 @@ public class Item implements Serializable {
 		}
 	}
 
+	/**
+	 * Method is initated via a button. Upon execution, this method tries to save the item into cloud
+	 * @return
+	 * Success: Redirects back to Management.jsf
+	 * Fail: Redibeck back to ModifyItem.jsf
+	 */
 	public String SaveItemToModify() {
 		System.out.println("SaveItemToModify called...");
 		HttpHandler handler = new HttpHandler();
@@ -148,6 +173,9 @@ public class Item implements Serializable {
 		return "NotModified";
 	}
 
+	/**
+	 * Before AdjustStock.jsf is rendered, this method is callled to initate the page with a given itemID
+	 */
 	public void RetrieveItemToAdjust() {
 		System.out.println("RetrieveItemToAdjust called...");
 		System.out.println(this.itemID);
@@ -163,6 +191,13 @@ public class Item implements Serializable {
 		}
 	}
 
+	/**
+	 * Method is called via button on AdjustStock.jsf.
+	 * The method validates the input if it contains integer only
+	 * @return
+	 * Success: Redirects back to Management.jsf
+	 * Fail: Redirect back to AdjustStock.jsf
+	 */
 	public String ItemStockAdjust() {
 		System.out.println("ItemStockAdjust called...");
 

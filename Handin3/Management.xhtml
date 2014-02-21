@@ -11,9 +11,9 @@
 		<h:form rendered="#{Customer.customerIsAdmin}">
 			<h1>Music Shop - Management</h1>
 			<div class="managementMenu">
-				<a href="CreateCustomer.xhtml">Create Customer</a>
+				<a href="CreateCustomer.jsf">Create Customer</a>
 				<br />
-				<a href="CreateItem.xhtml">Create Item</a>
+				<a href="CreateItem.jsf">Create Item</a>
 			</div>
 			<h:dataTable value="#{Items.itemList}" var="Item"
 				styleClass="itemListTable" headerClass="itemListTableHeader"
@@ -43,10 +43,10 @@
 					<h:outputText escape="false" value="#{Item.itemDescription}"></h:outputText>
 				</h:column>
 				<h:column>
-					<a href="/WebTekMusicShop/ModifyItem.xhtml?ItemID=#{Item.itemID}">Modify</a>
+					<a href="/WebTekMusicShop/ModifyItem.jsf?ItemID=#{Item.itemID}">Modify</a>
 				</h:column>
 				<h:column>
-					<a href="/WebTekMusicShop/AdjustStock.xhtml?ItemID=#{Item.itemID}">Adjust
+					<a href="/WebTekMusicShop/AdjustStock.jsf?ItemID=#{Item.itemID}">Adjust
 						Stock</a>
 				</h:column>
 				<!-- h:column>
