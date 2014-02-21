@@ -8,7 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "Customer", eager = true)
-@SessionScoped
+@RequestScoped
 public class Customer implements Serializable {
 	
 	private static final long serialVersionUID = 748705489315002184L;
@@ -16,10 +16,10 @@ public class Customer implements Serializable {
 	private String customerName;
 	private String customerPass;
 	
-	@PostConstruct
-	public void init() {
-		customerID="";
-	}
+//	@PostConstruct
+//	public void init() {
+//		customerID="";
+//	}
 	
 	public String getCustomerPass() {
 		return customerPass;
