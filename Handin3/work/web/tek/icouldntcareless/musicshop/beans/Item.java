@@ -16,6 +16,8 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.output.XMLOutputter;
 
+import com.sun.org.apache.bcel.internal.generic.ReturnaddressType;
+
 import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
 import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
 import web.tek.icouldntcareless.musicshop.helpers.Validator;
@@ -51,9 +53,10 @@ public class Item implements Serializable {
 		this.itemDescription = itemDescription;
 	}
 	
-	public void CreateItem(){
+	public String CreateItem(){
 		XMLParser xmlParser = new XMLParser();
 		Validator xmlValidator = new Validator();
+		HttpHandler httpHandler = new HttpHandler();
 		
 		String validatorPath = "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
 		System.out.println(validatorPath);
@@ -67,19 +70,20 @@ public class Item implements Serializable {
 		
 		XMLOutputter outputter = new XMLOutputter();
 		
+		//Validating Document to Persist up to cloud
 		try {
 			outputter.output(createDocument, System.out);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		try {
 			xmlValidator.validateXML(createDocument, xmlpath);
+			if(httpHandler.outputXMLonHTTP("POST", new URL(ApplicationConstants.CREATEITEM), createDocument) != false){
+				return "itemCreated";
+			}
+			
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			return "itemNotCreated";
 		}
+		return "itemNotCreated";
 	}
 	
 	public void RetrieveItemToModify(){

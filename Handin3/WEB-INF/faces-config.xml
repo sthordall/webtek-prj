@@ -19,4 +19,16 @@
       </navigation-case>
     </navigation-rule>
     
+       <navigation-rule>
+      <from-view-id>/CreateItem.xhtml</from-view-id>
+      <navigation-case>
+        <from-outcome>itemCreated</from-outcome>
+        <to-view-id>/Management.xhtml</to-view-id>
+        <redirect></redirect>
+      </navigation-case>
+            <navigation-case>
+        <from-outcome>NotModified</from-outcome>
+        <to-view-id>/CreateItem.xhtml</to-view-id>
+      </navigation-case>
+    </navigation-rule>
 </faces-config>
