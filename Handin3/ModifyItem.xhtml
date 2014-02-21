@@ -12,31 +12,38 @@
 			<f:event type="preRenderView" listener="#{Item.RetrieveItemToModify}" />
 			<f:viewParam name="ItemID" value="#{Item.itemID}" />
 		</f:metadata>
-		<h1>Modify Item</h1>
-		<h:body>
-			<h:form>
+
+		<h:form rendered="#{Customer.customerIsAdmin}">
+			<h1>Modify Item</h1>
+			<h:body>
 				<p class="">
 					<label>ID</label> <label>#{Item.itemID}</label>
 				</p>
 				<p class="">
 					<label>Name</label><br></br>
-					<h:inputText class="modifyitemRegularTextBox" value="#{Item.itemName}"></h:inputText>
+					<h:inputText class="modifyitemRegularTextBox"
+						value="#{Item.itemName}"></h:inputText>
 				</p>
 				<p>
 					<label>Price</label><br></br>
-					<h:inputText class="modifyitemRegularTextBox" value="#{Item.itemPrice}"></h:inputText>
+					<h:inputText class="modifyitemRegularTextBox"
+						value="#{Item.itemPrice}"></h:inputText>
 				</p>
 				<p>
 					<label>Url</label><br></br>
-					<h:inputText class="modifyitemRegularTextBox" value="#{Item.itemURL}"></h:inputText>
+					<h:inputText class="modifyitemRegularTextBox"
+						value="#{Item.itemURL}"></h:inputText>
 				</p>
 				<p>
 					<label>Description</label><br></br>
-					<h:inputTextarea class="modifyitemDescriptionBox" value="#{Item.itemDescription}"></h:inputTextarea>
+					<h:inputTextarea class="modifyitemDescriptionBox"
+						value="#{Item.itemDescription}"></h:inputTextarea>
 				</p>
-				<h:commandButton class="modifyitemButton" value="Save Item" action="#{Item.SaveItemToModify}"></h:commandButton>
-			</h:form>
-		</h:body>
+				<h:commandButton class="modifyitemButton" value="Save Item"
+					action="#{Item.SaveItemToModify}"></h:commandButton>
+			</h:body>
+		</h:form>
+
 
 
 	</ui:define>
