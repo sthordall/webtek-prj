@@ -14,11 +14,10 @@
 		
 		<h:form>
 		<label>Name</label>
-		<h:inputText></h:inputText>
+		<h:inputText value="#{Item.itemName}" ></h:inputText>
+		<h:commandButton value="Create Item" action="#{Item.CreateItem}"></h:commandButton>
 		</h:form>
 		
 		</h:body>
-
-
 	</ui:define>
 </ui:composition>
