@@ -47,7 +47,7 @@ public class CreateCustomer implements Serializable {
 		HttpHandler httpHandler = new HttpHandler();
 		XMLOutputter outputter = new XMLOutputter();
 
-		String validatorPath = "xmlSchema/cloud.xsd";
+		String validatorPath = "WEB-INF/xmlSchema/cloud.xsd";
 		Path xmlpath = Paths.get(validatorPath);
 
 		Document createDocument = xmlParser.getCreateCustomerRequest(

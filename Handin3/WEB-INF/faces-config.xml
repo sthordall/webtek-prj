@@ -21,12 +21,12 @@
     <navigation-rule>
 		<from-view-id>/Login.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>FAILED</from-outcome>
+			<from-outcome>Login_Unsuccessful</from-outcome>
 			<to-view-id>/Login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>LOGGED IN</from-outcome>
+			<from-outcome>Login_successful</from-outcome>
 			<to-view-id>/Management.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -39,9 +39,23 @@
         <to-view-id>/Management.xhtml</to-view-id>
         <redirect></redirect>
       </navigation-case>
-            <navigation-case>
-        <from-outcome>NotModified</from-outcome>
+            <navigation-case>          
+        <from-outcome>itemNotCreated</from-outcome>
         <to-view-id>/CreateItem.xhtml</to-view-id>
+      </navigation-case>
+    </navigation-rule>
+    
+           <navigation-rule>
+      <from-view-id>/AdjustStock.xhtml</from-view-id>
+      <navigation-case>
+        <from-outcome>stockAdjusted</from-outcome>
+        <to-view-id>/Management.xhtml</to-view-id>
+        <redirect></redirect>
+      </navigation-case>
+            <navigation-case>          
+        <from-outcome>stockNotAdjusted</from-outcome>
+        <to-view-id>/AdjustStock.xhtml</to-view-id>
+        <redirect></redirect>
       </navigation-case>
     </navigation-rule>
 </faces-config>

@@ -1,7 +1,6 @@
 package web.tek.icouldntcareless.musicshop.beans;
 
 import java.io.Serializable;
-import java.io.StringReader;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +10,6 @@ import javax.faces.bean.SessionScoped;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
 import web.tek.icouldntcareless.musicshop.helpers.ApplicationConstants;
@@ -55,7 +53,12 @@ public class Item implements Serializable {
 		Validator xmlValidator = new Validator();
 		HttpHandler httpHandler = new HttpHandler();
 
-		String validatorPath = "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
+		// String validatorPath =
+		// "/Users/dxong/git/WebTekProject/Handin3/xmlSchema/cloud.xsd";
+		String validatorPath = "WEB-INF/xmlSchema/cloud.xsd";
+		// String validatorPath = "WebTekProject" + File.separator + "Handin3"+
+		// File.separator + "WEB-INF" + File.separator + "xmlSchema" +
+		// File.separator + "cloud.xsd";
 		System.out.println(validatorPath);
 		Path xmlpath = Paths.get(validatorPath);
 
@@ -88,7 +91,7 @@ public class Item implements Serializable {
 		System.out.println("RetrieveItemToModify called...");
 		System.out.println(this.itemID);
 		Items itemlist = new Items();
-		itemlist.initForModify();
+		itemlist.init();
 		for (Item item : itemlist.getItemList()) {
 
 			if (item.itemID.equals(this.itemID)) {
@@ -121,17 +124,10 @@ public class Item implements Serializable {
 		modifyitem.addContent(new Element("itemURL").setText(this.itemURL)
 				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 
-		try {
-			SAXBuilder saxBuilder = new SAXBuilder();
-
-			modifyitem.addContent(new Element("itemDescription").addContent(
-					saxBuilder.build(new StringReader(this.itemDescription))
-							.getRootElement().clone()).setNamespace(
-					ApplicationConstants.WEBTEKNAMESPACE));
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
+		modifyitem.addContent(new Element("itemDescription").addContent(
+				new Element("document").setText(this.itemDescription)
+						.setNamespace(ApplicationConstants.WEBTEKNAMESPACE))
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 
 		Document document = new Document(modifyitem);
 		XMLOutputter outputter = new XMLOutputter();
@@ -150,6 +146,66 @@ public class Item implements Serializable {
 			return "NotModified";
 		}
 		return "NotModified";
+	}
+
+	public void RetrieveItemToAdjust() {
+		System.out.println("RetrieveItemToAdjust called...");
+		System.out.println(this.itemID);
+		Items itemlist = new Items();
+		itemlist.init();
+		for (Item item : itemlist.getItemList()) {
+
+			if (item.itemID.equals(this.itemID)) {
+				System.out.println("itemFound");
+				this.itemName = item.itemName;
+				this.itemStock = item.itemStock;
+			}
+		}
+	}
+
+	public String ItemStockAdjust() {
+		System.out.println("ItemStockAdjust called...");
+
+		String regex = "[0-9]+";
+
+		if (!this.itemStock.matches(regex)) {
+			return "stockNotAdjusted";
+		}
+
+		HttpHandler handler = new HttpHandler();
+
+		Element adjustStock = new Element("adjustItemStock");
+		adjustStock
+				.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+		adjustStock.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+
+		adjustStock.addContent(new Element("shopKey").setText(
+				ApplicationConstants.SHOPKEY).setNamespace(
+				ApplicationConstants.WEBTEKNAMESPACE));
+		adjustStock.addContent(new Element("itemID").setText(this.itemID)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		adjustStock.addContent(new Element("adjustment")
+				.setText(this.itemStock).setNamespace(
+						ApplicationConstants.WEBTEKNAMESPACE));
+
+		Document document = new Document(adjustStock);
+		XMLOutputter outputter = new XMLOutputter();
+
+		try {
+			outputter.output(document, System.out);
+
+			// Returns null if the responseCode is not 200 when persisting data
+			// up to the cloud
+			if (handler.outputXMLonHTTP("POST", new URL(
+					ApplicationConstants.ADJUSTSTOCK), document) != false) {
+				return "stockAdjusted";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "stockNotAdjusted";
+		}
+		return "stockNotAdjusted";
+
 	}
 
 	public String getItemID() {

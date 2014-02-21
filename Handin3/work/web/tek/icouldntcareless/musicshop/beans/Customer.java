@@ -19,7 +19,7 @@ public class Customer implements Serializable {
 	@PostConstruct
 	public void init() {
 
-		customerIsAdmin = true;
+		customerIsAdmin = false;
 	}
 
 	public String getCustomerPass() {

@@ -55,7 +55,7 @@ public class XMLParser {
 
 		return new Document(createItem);
 	}
-
+	
 	public Document CreateDocItemFromItemName(String itemName, String shopKey,
 			Namespace namespace) {
 		Element createItem = new Element("createItem");
@@ -64,8 +64,7 @@ public class XMLParser {
 		createItem.setNamespace(namespace);
 		createItem.addContent(new Element("shopKey").setText(shopKey)
 				.setNamespace(namespace));
-		createItem.addContent(new Element("itemName").setText(itemName)
-				.setNamespace(namespace));
+		createItem.addContent(new Element("itemName").setText(itemName).setNamespace(namespace));
 
 		return new Document(createItem);
 	}
@@ -76,9 +75,10 @@ public class XMLParser {
 		login.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
 
 		login.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
-		login.addContent(new Element("customerName").setText(username))
-				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
-		login.addContent(new Element("customerPass").setText(password));
+		login.addContent(new Element("customerName").setText(username)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		login.addContent(new Element("customerPass").setText(password)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 
 		return new Document(login);
 	}
@@ -108,23 +108,23 @@ public class XMLParser {
 		return new Document(modifyItem);
 
 	}
-
-	public Document getCreateCustomerRequest(String shopKey,
-			String customerName, String customerPass, Namespace namespace) {
-
+    
+    public Document getCreateCustomerRequest(String shopKey,
+                                             String customerName, String customerPass, Namespace namespace) {
+        
 		Element createCustomer = new Element("createCustomer");
 		createCustomer.addNamespaceDeclaration(namespace);
 		createCustomer.setNamespace(namespace);
-
+        
 		createCustomer.addContent(new Element("shopKey").setText(shopKey)
-				.setNamespace(namespace));
+                                  .setNamespace(namespace));
 		createCustomer.addContent(new Element("customerName").setText(
-				customerName).setNamespace(namespace));
+                                                                      customerName).setNamespace(namespace));
 		createCustomer.addContent(new Element("customerPass").setText(
-				customerPass).setNamespace(namespace));
-
+                                                                      customerPass).setNamespace(namespace));
+        
 		return new Document(createCustomer);
-
+        
 	}
 
 	public String generateItemDescriptionHTML(Element root) {
@@ -160,5 +160,4 @@ public class XMLParser {
 		}
 		return result;
 	}
-
 }

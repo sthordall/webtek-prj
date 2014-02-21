@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core" template="template.xhtml">
+
+	<ui:define name="content">
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{Item.RetrieveItemToAdjust}" />
+			<f:viewParam name="ItemID" value="#{Item.itemID}" />
+		</f:metadata>
+		<h:form rendered="#{Customer.customerIsAdmin}">
+
+			<h1>Adjust Item stock</h1>
+			<h:body>
+
+				<p class="">
+					<label>ID</label> <label>#{Item.itemID}</label>
+				</p>
+				<p class="">
+					<label>Stock</label><br></br>
+					<h:inputText class="modifyitemRegularTextBox"
+						value="#{Item.itemStock}"></h:inputText>
+				</p>
+				<h:commandButton class="modifyitemButton" value="Adjust stock"
+					action="#{Item.ItemStockAdjust}"></h:commandButton>
+			</h:body>
+		</h:form>
+	</ui:define>
+</ui:composition>

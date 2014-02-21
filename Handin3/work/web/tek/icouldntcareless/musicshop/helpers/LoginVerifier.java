@@ -33,29 +33,15 @@ public class LoginVerifier implements Serializable {
 		this.customer = customer;
 	}
 
-//	public Document getListOfCustomers() {
-//		HttpHandler httpHandler = new HttpHandler();
-//		URL listCustomers;
-//		Document tempDoc = null;
-//		try {
-//			listCustomers = new URL(ApplicationConstants.LISTCUSTOMERS);
-//			tempDoc = httpHandler.HttpRequest("GET", listCustomers);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		// List<Element> customerElementList =
-//		// tempDoc.getRootElement().getChildren();
-//		//
-//		// for (Element element : customerElementList) {
-//		// element.getChildText("customerName",
-//		// ApplicationConstants.WEBTEKNAMESPACE);
-//		// }
-//
-//		return tempDoc;
-//	}
-
+	/**
+	 * Handles user-login to admin part of the site.
+	 * The methods checks whether the username is the admin-user
+	 * and if it is, the user is redirected to a page with meaningful content,
+	 * if not the user is redirected to a page without content but IS logged in.
+	 * @return 
+	 * Upon success: Admin site <br/>
+	 * Upon fail: 	 Login site
+	 */
 	public String loginToAdminsite() {
 
 		System.out.println("loginToAdminsite invoked");
@@ -75,6 +61,11 @@ public class LoginVerifier implements Serializable {
 		}
 		
 		System.out.println("Username: "+customer.getCustomerName() + "\n" + "Password: "+customer.getCustomerPass());
+		
+		//Checking if username is Admin
+		if(customer.getCustomerName()=="iccladmin"){
+			customer.setCustomerIsAdmin(true);
+		}
 		
 		Document doc = xmlParser.getLoginRequest(customer.getCustomerName(),
 				customer.getCustomerPass());
