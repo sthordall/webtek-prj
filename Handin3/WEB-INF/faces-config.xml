@@ -21,12 +21,12 @@
     <navigation-rule>
 		<from-view-id>/Login.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>FAILED</from-outcome>
+			<from-outcome>Login_Unsuccessful</from-outcome>
 			<to-view-id>/Login.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>LOGGED IN</from-outcome>
+			<from-outcome>Login_successful</from-outcome>
 			<to-view-id>/Management.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
