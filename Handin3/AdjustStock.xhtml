@@ -12,8 +12,7 @@
 			<f:event type="preRenderView" listener="#{Item.RetrieveItemToAdjust}" />
 			<f:viewParam name="ItemID" value="#{Item.itemID}" />
 		</f:metadata>
-		<!-- <h:form rendered="#{Customer.customerIsAdmin}"> -->
-		<h:form rendered="true">
+		<h:form rendered="#{Customer.customerIsAdmin}">
 
 			<h1>Adjust Item stock</h1>
 			<h:body>
