@@ -75,10 +75,10 @@ public class XMLParser {
 		login.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
 
 		login.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
-		login.addContent(new Element("customerName").setText(username))
-				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
-		login.addContent(new Element("customerPass").setText(password))
-				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+		login.addContent(new Element("customerName").setText(username)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		login.addContent(new Element("customerPass").setText(password)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
 
 		return new Document(login);
 	}
