@@ -1,10 +1,21 @@
-TODO
-----------------------------------------------------------
-Jacob:
-- Login og admin site
+WEBTEK PROJECT - HAND IN 4:
 
-Kasper:
-- Modify/create item
+TODO:
+- Learn JavaScript and AJAX
 
-Stephan:
-- List items
+Goals:
+- Define server/client communication through AJAX
+- Customer functionality written in JavaScript
+	- Login (Non-admin)
+	- Browse inventory of shop
+	- Add/delete products to a basket
+	- Remember user session during browsing/shopping
+	- Allow purchase of products in basket
+- Use schemas for ensuring cloud-data validity
+
+Grading:
+- Whether the JavaScript application works.
+- How well the application is documented (so we can give you partial credit if some things are not working completely).
+- Whether the AJAX with the server works.
+- Whether the communication with the cloud works.
+- Whether the application runs on a university machine
