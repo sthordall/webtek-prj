@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -22,12 +23,8 @@ import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
  * The class is our MODEL, which is responsible/handling Modify and Create Items
  * and Adjusting the stock on an item.
  */
-/**
- * @author dxong
- *
- */
 @ManagedBean(name = "Item", eager = true)
-@SessionScoped
+@ViewScoped
 public class Item implements Serializable {
 	private static final long serialVersionUID = 148246321600366013L;
 
