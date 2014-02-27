@@ -12,7 +12,7 @@
         </servlet-class>
         <init-param>
 		     <param-name>jersey.config.server.provider.packages</param-name>
-		     <param-value>dk.cs.dwebtek</param-value>
+		     <param-value>com.webtek.musicshop</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -23,6 +23,6 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>overview.html</welcome-file>
+		<welcome-file>/views/overview.html</welcome-file>
 	</welcome-file-list>
 </web-app>

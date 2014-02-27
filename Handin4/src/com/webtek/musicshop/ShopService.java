@@ -1,4 +1,4 @@
-package dk.cs.dwebtek;
+package com.webtek.musicshop;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
