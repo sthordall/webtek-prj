@@ -1,13 +1,13 @@
 WEBTEK PROJECT - HAND IN 4:
 
 TODO:
-- Learn JavaScript and AJAX
+- Learn JavaScript, JQuery and AJAX [ALL]
 
 Goals:
-- Define server/client communication through AJAX
+- Define server/client communication through AJAX [ALL]
 - Customer functionality written in JavaScript
 	- Login (Non-admin)
-	- Browse inventory of shop
+	- Browse inventory of shop [STEPHAN]
 	- Add/delete products to a basket
 	- Remember user session during browsing/shopping
 	- Allow purchase of products in basket
