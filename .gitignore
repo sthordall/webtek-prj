@@ -10,9 +10,4 @@ Handin3/WEB-INF/.cvsignore
 
 
 Handin3/.settings/org.eclipse.core.resources.prefs
-Handin4/.settings/.jsdtscope
-Handin4/.settings/org.eclipse.jdt.core.prefs
-Handin4/.settings/org.eclipse.wst.common.component
-Handin4/.settings/org.eclipse.wst.common.project.facet.core.xml
-Handin4/.settings/org.eclipse.wst.jsdt.ui.superType.container
-Handin4/.settings/org.eclipse.wst.jsdt.ui.superType.name
+
