@@ -1,0 +1,231 @@
+body {
+	background: grey;
+	padding: 0px;
+	height: 100%;
+	font-family: "opensans", Arial, sans-serif;
+}
+
+div.page_wrapper {
+	height: 100%;
+	width: 100%;
+}
+
+div.header_wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: block;
+	min-width: 640px;
+}
+
+div.header {
+	background-color: rgba(0, 0, 0, 1);
+	text-align: center;
+	display: block;
+	padding: 10px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+p.header {
+	vertical-align: center;
+	font-weight: bold;
+	font-size: 180%;
+	color: white;
+	display: inline;
+}
+
+div.menubar {
+	padding-left: 5%;
+	padding-right: 5%;
+	height: 25px;
+	display: block;
+	background-color: rgba(0, 0, 0, 0.7);
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+div.menubar p{
+	color: white;
+	display: inline;
+	font-size: 120%;
+}
+
+p.left_menuitem {
+	float: left;
+	text-align: left;
+	margin: 2px 5px;
+}
+
+p.right_menuitem {
+	float: right;
+	text-align: right;
+	margin: 2px 5px;
+}
+
+div.left_side_menu {
+	font-size: 120%;
+	text-decoration: none;
+	list-style-type: none;
+	line-height: 50px;
+	width: 180px;
+	margin-top: 150px;
+	float: left;
+	display: block;
+	position: fixed;
+	background-color: black;
+}
+
+div.page_content {
+	display: inline-block;
+	text-align: center;
+	padding-top: 70px;
+	padding-bottom: 50px;
+	width: 100%;
+}
+
+table.product {
+	display: inline-block;
+}
+
+table.product p {
+	color: black;
+	font-size: 120%;
+}
+
+table.product img {
+	border: solid;
+	border-color: black;
+	height: 200px;
+	width: 200px;
+	border-radius: 100px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+div.footer_wrapper {
+	color: white;
+	text-align: center;
+	display: block;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	vertical-align: bottom;
+	background-color: black;
+}
+
+div.managementMenu {
+	padding: 10px;
+	margin: 20px;
+	text-align: center;
+	background-color: silver;
+	border: solid black;
+	box-shadow: 5px 5px 5px #555;
+}
+
+.itemListTable {
+	margin: 0 20px;
+	text-align: center;
+	border-collapse: collapse;
+	background-color: silver;
+	box-shadow: 5px 5px 5px #555;
+	width: auto;
+	word-wrap: break-word;
+	table-layout: fixed;
+	margin: 20px;
+}
+
+.itemListTableHeader {
+	font-size: 100%;
+	padding: 0 2px;
+	background-color: black;
+	color: white;
+	border: black solid;
+	word-wrap: break-word;
+}
+
+.itemListTable td {
+	padding: 2px 2px;
+	border: black solid;
+	word-wrap: break-word;
+	vertical-align: top;
+}
+
+.itemListTable img {
+	width: 80px;
+}
+
+.modifyitemLabel{
+	align: left;
+}
+
+
+.modifyitemDescriptionBox{
+	border: solid;
+	border-color: black;
+	height: 150px;
+	width: 500px;
+}
+
+.modifyitemRegularTextBox{
+	border: solid;
+	border-color: black;
+	height: 20px;
+	width: 500px;
+}
+
+.modifyitemButton{
+	border: solid;
+	border-color: black;
+	background-color: white;
+}
+
+table.centerTable {
+	width: 100%;
+	text-align: center;
+}
+
+td.itemID {
+	
+}
+
+td.itemNameColumn {
+	
+}
+
+td.itemURLColumn {
+	
+}
+
+td.itemPriceColumn {
+	
+}
+
+td.itemStock {
+	
+}
+
+td.itemDescription ul {
+	list-style-type: disc;
+}
+
+td.itemDescription  {
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+
+

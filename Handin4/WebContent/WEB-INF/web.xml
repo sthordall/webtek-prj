@@ -23,6 +23,6 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/views/overview.html</welcome-file>
+		<welcome-file>/views/index.html</welcome-file>
 	</welcome-file-list>
 </web-app>
