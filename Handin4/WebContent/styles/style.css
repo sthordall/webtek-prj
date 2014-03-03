@@ -59,12 +59,14 @@ p.left_menuitem {
 	float: left;
 	text-align: left;
 	margin: 2px 5px;
+	cursor: pointer;
 }
 
 p.right_menuitem {
 	float: right;
 	text-align: right;
 	margin: 2px 5px;
+	cursor: pointer;
 }
 
 div.left_side_menu {
@@ -80,7 +82,7 @@ div.left_side_menu {
 	background-color: black;
 }
 
-div.page_content {
+#page_content {
 	display: inline-block;
 	text-align: center;
 	padding-top: 70px;
