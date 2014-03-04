@@ -16,11 +16,6 @@ public class ShopService {
 	@Context
 	HttpSession session;
 
-	/**
-	 * Make the price increase per request (for the sake of example)
-	 */
-	private static int priceChange = 0;
-
 	@GET
 	@Path("items")
 	public String getItems() {
