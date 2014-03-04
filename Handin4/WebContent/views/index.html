@@ -3,8 +3,10 @@
     <head>
         <title>WebTekProject</title>
         <link href="styles/style.css" rel="stylesheet" type="text/css" />
+        <link href="styles/login.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="scripts/jquery-1.11.0.js"></script>
         <script type="text/javascript" src="scripts/menu.js"></script>
+        <script type="text/javascript" src="scripts/login.js"></script>
         <meta charset="utf-8"> 
     </head>
     <body>
@@ -17,24 +19,46 @@
                 <p class="left_menuitem" id="products_link">Products</p>
                 <p class="left_menuitem" id="contact_link">Contact</p>
                 <p class="left_menuitem" id="faq_link">FAQ</p>
-                <p class="right_menuitem" id="login_link">Login</p>
+                <p class="right_menuitem" id="login_link">
+                	<a href="#login-box" class="login-window">Login</a>
+                </p>
                 <p class="right_menuitem" id="basket_link">Basket</p>
             </div>
         </div>
-        <!--div class="left_side_menu">
-            <ul>
-                <li><a href="html/guitars.html">Guitars</a></li>
-                <li><a href="html/drums.html">Drums</a></li>
-                <li><a href="html/pianos.html">Pianos</a></li>
-                <li><a href="html/basses.html">Basses</a></li>
-                <li><a href="html/trumpets.html">Trumpets</a></li>
-                <li><a href="html/violins.html">Violins</a></li>
-            </ul>
-        </div-->
         <div id="page_content">
          
             <h1>WELCOME</h1>
             <h2>Group "Icouldntcareless" webshop</h2>
+            
+            <!-- LOGIN ATTEMPT START -->
+            <div class="container">
+				<div id="content">
+					<div id="login-box" class="login-popup">
+			        	<a href="#" class="close">
+			        		<img src="images/close_window2.png" class="btn_close" title="Close Window" alt="Close" />
+			        	</a>
+			          	<form method="post" class="signin" action="#">
+			                <fieldset class="textbox">
+			            	<label class="username">
+				                <span>Username or email</span>
+				                <input id="username" name="username" value="" type="text" autocomplete="on" placeholder="Username">
+			                </label>
+			                
+			                <label class="password">
+				                <span>Password</span>
+				                <input id="password" name="password" value="" type="password" placeholder="Password">
+				            </label>
+			                
+			                <button class="submit button" type="button">Sign in</button>
+			                
+			                </fieldset>
+			          	</form>
+					</div>
+			    
+			    </div>
+			</div>
+            <!-- LOGIN ATTEMTP END -->
+            
             <table class="product">
                 <tbody>
                     <tr>
