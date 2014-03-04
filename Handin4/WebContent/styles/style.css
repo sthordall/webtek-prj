@@ -2,6 +2,7 @@ body {
 	background: grey;
 	padding: 0px;
 	height: 100%;
+	min-width: 750px;
 	font-family: "opensans", Arial, sans-serif;
 }
 
@@ -240,7 +241,13 @@ div.itemInfo div {
 
 div.itemInfo div.itemName {
 	font-size: 180%;
-	text-align: center;
+	text-align: left;
+}
+
+
+div.itemBuyInfo p {
+	height: 10px;
+	margin-left: 10px;
 }
 
 button.buyItem {
