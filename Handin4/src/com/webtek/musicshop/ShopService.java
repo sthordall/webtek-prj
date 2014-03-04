@@ -49,8 +49,6 @@ public class ShopService {
 						"Appropriately supply premium alignments vis-a-vis future-proof niches. Intrinsicly e-enable cross-unit markets and innovative outsourcing.");
 		array.put(jsonObject2);
 
-		priceChange++;
-
 		// You can create a MessageBodyWriter so you don't have to call
 		// toString() every time
 		return array.toString();
