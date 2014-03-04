@@ -247,19 +247,6 @@ button.buyItem {
 	width: 100px;
 }
 
-.buyItem {
-	background-color:#e9e9e9;
-	position:relative;
-	top:1px;
-}
-
-.buyItem:hover {
-	background-color:#e9e9e9;
-	position:relative;
-	top:10px;
-}
-
-
 #hoverItem {
 	box-shadow:  5px 5px 5px #555;
 }
