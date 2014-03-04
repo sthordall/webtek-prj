@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$.get('rest/shop/items', function(itemsText) {
+	$.get('rest/baskethandler/productlist', function(itemsText) {
 		var items = JSON.parse(itemsText);
 		addItemsToPage(items);
 	});
