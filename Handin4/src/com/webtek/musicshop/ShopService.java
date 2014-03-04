@@ -1,7 +1,12 @@
 package com.webtek.musicshop;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.webtek.musicshop.Handlers.CloudHandler;
+import com.webtek.musicshop.Model.Item;
 
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
@@ -14,6 +19,9 @@ public class ShopService {
      * Out Servlet session. We will need this for the shopping basket
      */
     @Context HttpSession session;
+    
+    //private ArrayList<Item> itemList;
+    CloudHandler cloudHandler = new CloudHandler();
 
     /**
      * Make the price increase per request (for the sake of example)
@@ -23,6 +31,7 @@ public class ShopService {
     @GET
     @Path("items")
     public String getItems() {
+    	//System.out.println("getItems called");
         //You should get the items from the cloud server.
         //In the template we just construct some simple data as an array of objects
         JSONArray array = new JSONArray();
@@ -44,4 +53,22 @@ public class ShopService {
         //You can create a MessageBodyWriter so you don't have to call toString() every time
         return array.toString();
     }
+    
+//	@GET
+//    @Path("productlist")
+//    public String ReturnProductList(){
+//		System.out.println("ReturnProductList called...");
+//    	
+//    	//itemList = (ArrayList<Item>) session.getAttribute("itemList");
+//    	itemList = cloudHandler.getItemList();
+//    	JSONArray array = new JSONArray(itemList);
+//
+//    	return array.toString();
+//    }
+//    
+//    private JSONArray convertItemListToJsonArray(ArrayList<Item> itemList){
+//    	JSONArray array = new JSONArray(itemList);
+//    	return array;
+//    	
+//    }
 }
