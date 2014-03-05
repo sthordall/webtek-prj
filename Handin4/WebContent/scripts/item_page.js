@@ -13,10 +13,8 @@ function addItemsToPage(items) {
     for (var i = 0; i < items.length; i++) {
     	
         var item = items[i];
-        var itemId = 'item' + i;
-              
        
-        itemDiv = createItemSkeleton(pageContent, itemId);
+        itemDiv = createItemSkeleton(pageContent, items[i].itemID);
         
         itemDiv.children('.itemImage').append('<img src="' + item.itemURL + '"/>');
         itemDiv.children('.itemInfo').children('.itemName').append('<h3>'+item.itemName+'</h3>');
