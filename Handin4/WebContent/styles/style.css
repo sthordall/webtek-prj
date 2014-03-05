@@ -227,7 +227,6 @@ div.itemInfo {
 	float: left;
 	height: 100px;
 	width: 60%;
-	border-right: solid black;
 }
 
 
@@ -244,14 +243,27 @@ div.itemInfo div.itemName {
 	text-align: left;
 }
 
+div.itemBuyInfo {
+	display: inline-block;
+	text-align:left;
+	margin-left:10px;
+	height: 100px;
+	width: 120px;
+	float: right;
+	background-color: rgba(0, 0, 0, 0.7) ;
+	
+}
+
 
 div.itemBuyInfo p {
 	height: 10px;
 	margin-left: 10px;
+	color: white;
 }
 
 button.buyItem {
-	width: 100px;
+	width: 50px;
+	margin-left: 35px;
 }
 
 #hoverItem {
