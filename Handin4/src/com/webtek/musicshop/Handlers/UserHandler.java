@@ -34,12 +34,19 @@ public class UserHandler {
 			@FormParam("password") String password) throws IOException,
 			JDOMException, URISyntaxException {
 
-		Boolean isSucces = cloudHandler.login(user, password);
+		Boolean isSucces = false;
+
+		String customerID = cloudHandler.login(user, password);
+
+		if (customerID != "failure") {
+			isSucces = true;
+		}
 
 		if (isSucces) {
 			Customer customer = new Customer();
 			customer.setCustomerName(user);
 			customer.setIsLoggedIn(true);
+			customer.setCustomerID(customerID);
 			session.setAttribute("user", customer);
 			return "success";
 		} else {
