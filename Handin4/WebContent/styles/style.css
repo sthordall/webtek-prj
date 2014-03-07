@@ -38,6 +38,7 @@ p.header {
 	font-size: 180%;
 	color: white;
 	display: inline;
+	cursor: pointer;
 }
 
 div.menubar {
