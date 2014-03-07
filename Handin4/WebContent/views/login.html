@@ -1,21 +1,16 @@
 <script type="text/javascript" src="scripts/login.js"></script>
-<link href="styles/login.css" rel="stylesheet" type="text/css"/>
+<link href="styles/login.css" rel="stylesheet" type="text/css" />
 <h1>Login</h1>
 
-
-   	<form method="post" class="signin" action="#">
-           <fieldset class="textbox">
-       		<label class="username">
-            	<span>Username or email</span>
-            	<input id="username" name="username" value="" type="text" autocomplete="on" placeholder="Username">
-           </label>
-           
-           <label class="password">
-            	<span>Password</span>
-            	<input id="password" name="password" value="" type="password" placeholder="Password">
-        	</label>
-           
-           <button class="submit button" type="button">Sign in</button>
-           
-           </fieldset>
-     	</form>
+<form name="login" method="post" class="signin">
+	<fieldset class="textbox">
+		<label class="username"> <span>Username</span> <input
+			id="username" name="username" type="text" 
+			placeholder="Username" required/>
+		</label> <label class="password"> <span>Password</span> <input
+			id="password" name="password" type="password"
+			placeholder="Password" required/>
+		</label>
+		<button id="loginButton" type="button">Sign in</button>
+	</fieldset>
+</form>
