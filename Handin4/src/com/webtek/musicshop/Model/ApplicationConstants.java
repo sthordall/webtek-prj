@@ -24,4 +24,6 @@ public class ApplicationConstants {
 	public static final String LOGIN = CLOUDURL + "/login";
 	public static final String CREATECUSTOMER = CLOUDURL + "/createCustomer";
 	public static final String ADJUSTSTOCK = CLOUDURL + "/adjustItemStock";
+	public static final String SELLITEMS = CLOUDURL + "/sellItems";
+
 }

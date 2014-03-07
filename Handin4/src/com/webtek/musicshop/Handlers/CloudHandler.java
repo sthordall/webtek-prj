@@ -15,6 +15,9 @@ import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import org.jdom2.output.XMLOutputter;
 
+//import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
+//import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
+
 import com.webtek.musicshop.Model.ApplicationConstants;
 import com.webtek.musicshop.Model.Item;
 
@@ -99,12 +102,43 @@ public class CloudHandler {
 
 			// Send request and return true if logged in, otherwise false
 			URL loginUrl = new URL(ApplicationConstants.LOGIN);
-			return httpHandler.outputXMLonHTTP("POST", loginUrl, loginDocument);
+			httpHandler.outputXMLonHTTP("POST", loginUrl, loginDocument);
+			return true;
 		} catch (Exception e) {
 			System.out.println("An error occurred: " + e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+//	public boolean CreateUser(String username, String password){
+//		
+//		
+//		return true;
+//	}
+	
+	public boolean CreateCustomer(String username, String password) {
+		XMLParser xmlParser = new XMLParser();
+		HttpHandler httpHandler = new HttpHandler();
+		XMLOutputter outputter = new XMLOutputter();
+
+		Document createDocument = xmlParser.getCreateCustomerRequest(
+				ApplicationConstants.SHOPKEY, username, password,
+				ApplicationConstants.WEBTEKNAMESPACE);
+
+		try {
+			outputter.output(createDocument, System.out);
+			if (httpHandler.outputXMLonHTTP("POST", new URL(
+					ApplicationConstants.CREATECUSTOMER), createDocument) != null) {
+				return true;
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		return false;
 	}
 
 	public ArrayList<Item> getItemList() {

@@ -13,6 +13,7 @@ import javax.ws.rs.core.Context;
 
 import org.json.JSONArray;
 
+import com.webtek.musicshop.Model.Customer;
 import com.webtek.musicshop.Model.Item;
 import com.webtek.musicshop.Model.ItemBasket;
 
@@ -43,54 +44,72 @@ public class BasketHandler {
 	public String addProductsToBasket(@PathParam("itemid") String itemID) {
 		// Retrieve itemID
 		System.out.println("Got request with id: " + itemID);
-		
+
 		HashMap<String, Integer> basketHashMap;
-		
+
 		// The data should be saved in a hashmap(key, value)
 		// By using hashmap instead of list, it makes it easier to count how
 		// many items
 		// of the current itemID in hashmap instead of list
-		
-		if(session.getAttribute("basket") == null){
+
+		if (session.getAttribute("basket") == null) {
 			basketHashMap = new HashMap<String, Integer>();
 			basketHashMap.put(itemID, 1);
-		}
-		else{
-			basketHashMap = (HashMap<String, Integer>) session.getAttribute("basket");			
-			if(basketHashMap.containsKey(itemID)){
-				basketHashMap.put(itemID, basketHashMap.get(itemID)+1);
-			}
-			else{
+		} else {
+			basketHashMap = (HashMap<String, Integer>) session
+					.getAttribute("basket");
+			if (basketHashMap.containsKey(itemID)) {
+				basketHashMap.put(itemID, basketHashMap.get(itemID) + 1);
+			} else {
 				basketHashMap.put(itemID, 1);
-			}		
+			}
 		}
 		session.setAttribute("basket", basketHashMap);
-		//TEST
-		HashMap<String, Integer> testHashMap = (HashMap<String, Integer>) session.getAttribute("basket");
+		// TEST
+		HashMap<String, Integer> testHashMap = (HashMap<String, Integer>) session
+				.getAttribute("basket");
 		System.out.print(testHashMap.get(itemID).toString());
 		return "success";
 	}
-	
-	@GET
+
+	/**
+	 * Checkout basket function. Can return the following strings: "failure",
+	 * "success", "ok", "error", "itemSoldOut" and "empty".
+	 * 
+	 * @param hashMap
+	 * @param customerId
+	 */
+
+	@POST
 	@Path("checkoutBasket")
-	public String CheckoutBasket(){
-		
-		Item itemToAdd = new Item();
-		
-//		ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
-//		for(int i = 0; i < itemList.size(); i++){
-//			if(itemID == itemList.get(i).getItemID()){
-//				 itemToAdd = itemList.get(i);
-//			}
-//		}
-		// Make another Cloud call to check whether the current item is higher
-		// than 0
-		// Return success or fail depending on whether the item is higher than 0
-		// Only save it if it is higher than 0
-		
-		return "";
+	public String CheckoutBasket() {
+
+		Customer customer;
+
+		// Checking if a customer is logged in
+		if (session.getAttribute("user") == null) {
+			return "notLoggedIn";
+		} else {
+			customer = (Customer) session.getAttribute("user");
+
+			if (customer.getIsLoggedIn() == false) {
+				return "notLoggedIn";
+			}
+		}
+
+		// Checking if basket is empty
+		if (session.getAttribute("basket") == null) {
+			return "empty";
+		} else {
+			@SuppressWarnings("unchecked")
+			HashMap<String, Integer> basketHashMap = (HashMap<String, Integer>) session
+					.getAttribute("basket");
+
+			return cloudHandler.sellItems(basketHashMap,
+					customer.getCustomerID());
+		}
 	}
-	
+
 	@GET
 	@Path("productlist")
 	public String ReturnProductList() {
