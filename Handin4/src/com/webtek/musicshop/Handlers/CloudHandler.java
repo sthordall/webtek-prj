@@ -1,10 +1,11 @@
 package com.webtek.musicshop.Handlers;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
 
@@ -28,6 +29,9 @@ public class CloudHandler {
 
 	@Context
 	HttpSession session;
+
+	@Context
+	ServletContext servletContext;
 
 	public CloudHandler() {
 		validator = new Validator();
@@ -79,7 +83,7 @@ public class CloudHandler {
 	}
 
 	public boolean login(String customer, String password) throws IOException,
-			JDOMException {
+			JDOMException, URISyntaxException {
 		Namespace ns = ApplicationConstants.WEBTEKNAMESPACE;
 		Element root = new Element("login", ns);
 
@@ -97,8 +101,8 @@ public class CloudHandler {
 		Document loginDocument = new Document(root);
 
 		try {
-			// Validate
-			validator.validateXML(loginDocument, Paths.get(validatorPath));
+			// // Validate
+			// validator.validateXML(loginDocument, Paths.get(validatorPath));
 
 			// Send request and return true if logged in, otherwise false
 			URL loginUrl = new URL(ApplicationConstants.LOGIN);

@@ -2,6 +2,7 @@
     <wb-module deploy-name="DynamicMusicShop">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WebContent/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/" source-path="/WebContent/WEB-INF/xmlSchema"/>
         <property name="context-root" value="DynamicMusicShop"/>
         <property name="java-output-path" value="/DynamicMusicShop/WEB-INF/classes"/>
     </wb-module>

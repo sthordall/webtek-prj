@@ -6,14 +6,8 @@ $(document).ready(function() {
 		$('.buyItem').click(function() {
 	    	var buttId = this.id;
 	    	var itemId = buttId.split('_').pop();
-	    	alert(itemId);
 	    	$.post('rest/baskethandler/addProductsTobasket/'+itemId, function(status) {
-	    		if(status == "success") {
-	    			var items = JSON.parse(itemsText);
-	    			addItemsToPage(items);
-	    		} else {
-	    			alert('Something went wrong!');
-	    		}
+	    		
 	    	});
 	    });
 		
