@@ -11,6 +11,14 @@ $(document).ready(function() {
 	    	updateBasket();	    	
 	    });
 		
+		$('#checkoutBuy').click(function() {
+	    	var buttId = this.id;
+	    	var itemId = buttId.split('_').pop();
+	    	$.post('rest/baskethandler/checkout/', function(status) {    		
+	    	});
+	    	updateBasket();	    	
+	    });
+		
 		$('.item').hover( function() {
 			$(this).children('.itemInfo').children('.itemName').slideUp("fast");
 			$(this).children('.itemInfo').children('.itemDescription').slideDown("fast");
@@ -58,10 +66,11 @@ function createBasketSkeleton(rootDiv){
 	var basketTable = $('#basketTable');
 	basketTable.append('<tr class="" id="tableTitle"><td><h2>Basket</h2></td></tr>');
 	basketTable.append('<tr class="" id="tableItems"></tr>');
-	basketTable.append('<tr class="" id="tableCheckout"><td id="tdSubtotal"></td></tr>');
+	basketTable.append('<tr class="" id="tableCheckout"><td id="tdSubtotal"></td><td id="tdcheckout">'
+			+ '<button class="" id="checkoutBuy">checkout/buy</button></td></tr>');
 
 }
-SubTotal = 0;
+//SubTotal = 0;
 function updateBasket(){
 	$.get('rest/baskethandler/updatecart', function(itemBasket) {
 		var itemBasket = JSON.parse(itemBasket);
@@ -73,7 +82,7 @@ function updateBasket(){
 		
 		for(var i = 0; i < itemBasket.length; i++){
 			var item = itemBasket[i];
-			SubTotal += item.itemPrice;
+			//SubTotal += item.itemPrice;
 			tableItems.append('<td id=itemName' + i + '>'
 					+ item.itemName +'</td>');
 			tableItems.append('<td id=itemPrice' + i + '>' + item.itemPrice + '</td>');
@@ -84,6 +93,7 @@ function updateBasket(){
 		//SubTotalElement.text(SubTotal);
 	});
 }
+
 function createItemSkeleton(rootDiv, itemId) {
 	rootDiv.append('<div class="item" id="' + itemId + '"></div>'); 
     itemDiv = $('#'+itemId);

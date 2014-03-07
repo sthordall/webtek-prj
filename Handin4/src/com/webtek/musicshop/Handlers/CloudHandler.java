@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Iterator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+//import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.ws.rs.core.Context;
 
 import org.jdom2.Document;
@@ -17,6 +21,9 @@ import org.jdom2.output.XMLOutputter;
 
 //import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
 //import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
+
+
+
 
 import com.webtek.musicshop.Model.ApplicationConstants;
 import com.webtek.musicshop.Model.Item;
@@ -111,12 +118,6 @@ public class CloudHandler {
 		}
 	}
 	
-//	public boolean CreateUser(String username, String password){
-//		
-//		
-//		return true;
-//	}
-	
 	public boolean CreateCustomer(String username, String password) {
 		XMLParser xmlParser = new XMLParser();
 		HttpHandler httpHandler = new HttpHandler();
@@ -140,7 +141,137 @@ public class CloudHandler {
 		}
 		return false;
 	}
+	
+	/**
+	 * Sellitems function to send sellitems request to server. Can return the
+	 * following strings: "failure", "success", "ok", "error" and "itemSoldOut"
+	 * 
+	 * @param hashMap
+	 * @param customerId
+	 */
+	public String sellItems(HashMap<String, Integer> hashMap, String customerId) {
+		Namespace ns = ApplicationConstants.WEBTEKNAMESPACE;
+		Element root = new Element("sellItems", ns);
+		Iterator<Entry<String, Integer>> iterator = hashMap.entrySet()
+				.iterator();
+	
+		while (iterator.hasNext()) {
+			Entry<String, Integer> entry = iterator.next();
+	
+			// ShopKey
+			Element shopKeyElement = new Element("shopKey", ns);
+			shopKeyElement.setText(ApplicationConstants.SHOPKEY);
+			root.addContent(shopKeyElement);
+	
+			// ItemID
+			Element itemIdElement = new Element("itemID", ns);
+			itemIdElement.setText(entry.getKey());
+			root.addContent(itemIdElement);
+	
+			// CustomerID
+			Element customerIdElement = new Element("customerID", ns);
+			customerIdElement.setText(customerId);
+			root.addContent(customerIdElement);
+	
+			// SaleAmount
+			Element amountElement = new Element("saleAmount", ns);
+			amountElement.setText(entry.getValue().toString());
+			root.addContent(amountElement);
+	
+			// AdjustStock
+			String subtractResponse = SubstractItemStock(entry.getKey(),
+					entry.getValue());
+			if (subtractResponse != "stockAdjusted") {
+				return subtractResponse;
+			}
+	
+			// CreateDocument
+			Document sellItemsDocument = new Document(root);
+	
+			try {
+				// // Validate
+				// validator.validateXML(sellItemsDocument,
+				// Paths.get(validatorPath));
+	
+				// Send request and return true if logged in, otherwise false
+				URL sellItemsUrl = new URL(ApplicationConstants.SELLITEMS);
+				Document respDocument = httpHandler.outputXMLonHTTP("POST",
+						sellItemsUrl, sellItemsDocument);
+	
+				String sellItemsResp = "failure";
+	
+				if (respDocument == null) {
+					return sellItemsResp;
+				}
+	
+				Iterator<Element> sellItemsRespIterator = respDocument
+						.getRootElement().getChildren().iterator();
+	
+				while (sellItemsRespIterator.hasNext()) {
+					sellItemsResp = sellItemsRespIterator.next().getName();
+				}
+	
+				return sellItemsResp;
+	
+			} catch (Exception e) {
+				System.out.println("An error occurred: " + e.getMessage());
+				e.printStackTrace();
+				return "failure";
+			}
+		}
+	
+		return "success";
+	}
 
+	public String SubstractItemStock(String itemId, Integer subtractItemStock) {
+	
+		Iterator<Item> itemIterator = itemList.iterator();
+		Integer currentItemStock = 0;
+		Integer newItemStock;
+	
+		// Find itemstock on item
+		while (itemIterator.hasNext()) {
+			Item item = (Item) itemIterator.next();
+			if (item.getItemID() == itemId) {
+				currentItemStock = Integer.parseInt(item.getItemStock());
+			}
+		}
+	
+		// Calculate new itemstock
+		newItemStock = currentItemStock - subtractItemStock;
+		if (newItemStock < 0) {
+			return "notEnoughStock";
+		}
+	
+		Element adjustStock = new Element("adjustItemStock");
+		adjustStock
+				.addNamespaceDeclaration(ApplicationConstants.WEBTEKNAMESPACE);
+		adjustStock.setNamespace(ApplicationConstants.WEBTEKNAMESPACE);
+	
+		adjustStock.addContent(new Element("shopKey").setText(
+				ApplicationConstants.SHOPKEY).setNamespace(
+				ApplicationConstants.WEBTEKNAMESPACE));
+		adjustStock.addContent(new Element("itemID").setText(itemId)
+				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+		adjustStock.addContent(new Element("adjustment").setText(
+				newItemStock.toString()).setNamespace(
+				ApplicationConstants.WEBTEKNAMESPACE));
+	
+		Document document = new Document(adjustStock);
+	
+		try {
+			if (httpHandler.outputXMLonHTTP("POST", new URL(
+					ApplicationConstants.ADJUSTSTOCK), document) != null) {
+				return "stockAdjusted";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "stockNotAdjusted";
+		}
+		return "stockNotAdjusted";
+	}
+
+	
 	public ArrayList<Item> getItemList() {
 		return itemList;
 	}
