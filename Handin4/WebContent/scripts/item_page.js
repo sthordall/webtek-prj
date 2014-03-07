@@ -3,6 +3,7 @@ $(document).ready(function() {
 		var items = JSON.parse(itemsText);
 		addItemsToPage(items);
 	});
+	
 });
 
 function addItemsToPage(items) {
@@ -22,6 +23,9 @@ function addItemsToPage(items) {
         itemDiv.children('.itemBuyInfo').children('.itemPrice').append('<p> DKK '+ item.itemPrice + ',-</p>');
         itemDiv.children('.itemBuyInfo').children('.itemStock').append('<p> Stock '+ item.itemStock + '</p>');
         
+        if(item.itemStock <= 0) {
+        	 itemDiv.children('.itemBuyInfo').children('.buyItem').attr('disabled', true);
+        }
     }
 }
 
@@ -38,7 +42,20 @@ function createItemSkeleton(rootDiv, itemId) {
     itemDiv.append('<div class="itemBuyInfo"></div>');
     itemDiv.children('.itemBuyInfo').append('<div class="itemPrice"></div>');
     itemDiv.children('.itemBuyInfo').append('<div class="itemStock"></div>');
-    itemDiv.children('.itemBuyInfo').append('<button class="buyItem" type="submit">Buy</button>');
+    itemDiv.children('.itemBuyInfo').append('<button class="buyItem" type="submit" id="buyButt_"' + itemId +'>Buy</button>');
+    
+    $('#buyButt'+itemId).click(function(event) {
+    	var buttId = event.target.id;
+    	var itemId = buttId.split('_').pop();
+    	alert(itemId);
+    	$.get('rest/baskethandler/addProductsTobasket/'+itemId, function() {
+    		if(status == "success") {
+    			location.reload();
+    		} else {
+    			alert('Something went wrong!');
+    		}
+    	});
+    });
    
     return itemDiv;
 }

@@ -205,9 +205,8 @@ div.item {
 	padding: 0px;
 	width:80%;
 	height: 100px;
-
+	box-shadow:  5px 5px 5px #555;
 	overflow: hidden;
-
 }
 
 div.itemImage {
