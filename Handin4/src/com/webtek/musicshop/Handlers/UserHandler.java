@@ -37,9 +37,9 @@ public class UserHandler {
 
 		Boolean isSucces = false;
 
-		String customerID = cloudHandler.login(user, password);
+		boolean customerID = cloudHandler.login(user, password);
 
-		if (customerID != "failure") {
+		if (customerID != false) {
 			isSucces = true;
 		}
 
@@ -47,7 +47,7 @@ public class UserHandler {
 			Customer customer = new Customer();
 			customer.setCustomerName(user);
 			customer.setIsLoggedIn(true);
-			customer.setCustomerID(customerID);
+			//customer.setCustomerID(customerID);
 			session.setAttribute("user", customer);
 			return "success";
 		} else {

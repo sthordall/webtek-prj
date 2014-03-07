@@ -102,7 +102,8 @@ public class CloudHandler {
 
 			// Send request and return true if logged in, otherwise false
 			URL loginUrl = new URL(ApplicationConstants.LOGIN);
-			return httpHandler.outputXMLonHTTP("POST", loginUrl, loginDocument);
+			httpHandler.outputXMLonHTTP("POST", loginUrl, loginDocument);
+			return true;
 		} catch (Exception e) {
 			System.out.println("An error occurred: " + e.getMessage());
 			e.printStackTrace();
@@ -128,7 +129,7 @@ public class CloudHandler {
 		try {
 			outputter.output(createDocument, System.out);
 			if (httpHandler.outputXMLonHTTP("POST", new URL(
-					ApplicationConstants.CREATECUSTOMER), createDocument) != false) {
+					ApplicationConstants.CREATECUSTOMER), createDocument) != null) {
 				return true;
 			}
 
