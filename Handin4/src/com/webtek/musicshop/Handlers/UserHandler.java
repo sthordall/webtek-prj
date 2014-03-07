@@ -2,6 +2,7 @@ package com.webtek.musicshop.Handlers;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,12 +35,19 @@ public class UserHandler {
 			@FormParam("password") String password) throws IOException,
 			JDOMException, URISyntaxException {
 
-		Boolean isSucces = cloudHandler.login(user, password);
+		Boolean isSucces = false;
+
+		String customerID = cloudHandler.login(user, password);
+
+		if (customerID != "failure") {
+			isSucces = true;
+		}
 
 		if (isSucces) {
 			Customer customer = new Customer();
 			customer.setCustomerName(user);
 			customer.setIsLoggedIn(true);
+			customer.setCustomerID(customerID);
 			session.setAttribute("user", customer);
 			return "success";
 		} else {
@@ -51,6 +59,7 @@ public class UserHandler {
 	@Path("logout")
 	public void logout() {
 		session.setAttribute("user", new Customer());
+		session.setAttribute("basket", new HashMap<String, Integer>());
 	}
 
 	@GET
