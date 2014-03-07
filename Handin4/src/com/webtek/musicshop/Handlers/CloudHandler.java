@@ -1,12 +1,17 @@
 package com.webtek.musicshop.Handlers;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
 
+import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.Namespace;
 import org.jdom2.output.XMLOutputter;
 
 import com.webtek.musicshop.Model.ApplicationConstants;
@@ -16,12 +21,16 @@ public class CloudHandler {
 
 	private HttpHandler httpHandler;
 	private XMLParser xmlParser;
+	private static String validatorPath = "xmlSchema/cloud.xsd";
+	private Validator validator;
 
 	private ArrayList<Item> itemList;
-	
-	@Context HttpSession session;
+
+	@Context
+	HttpSession session;
 
 	public CloudHandler() {
+		validator = new Validator();
 		httpHandler = new HttpHandler();
 		xmlParser = new XMLParser();
 		XMLOutputter xmlOutputter = new XMLOutputter();
@@ -30,7 +39,7 @@ public class CloudHandler {
 			URL requestUrl = new URL(ApplicationConstants.LISTITEMS);
 			Element responseRoot = httpHandler.HttpRequest("GET", requestUrl)
 					.getRootElement();
-			
+
 			xmlOutputter.output(responseRoot, System.out);
 
 			if (responseRoot == null) {
@@ -63,10 +72,42 @@ public class CloudHandler {
 		} catch (Exception e) {
 			System.out.println("An error occurred: " + e.getMessage());
 		}
-		/*Save into session*/
+		/* Save into session */
 		System.out.println("Before Session method");
-		//addItemListInSession();
+		// addItemListInSession();
 		System.out.println("After Session method");
+	}
+
+	public boolean login(String customer, String password) throws IOException,
+			JDOMException {
+		Namespace ns = ApplicationConstants.WEBTEKNAMESPACE;
+		Element root = new Element("login", ns);
+
+		// CustomerName
+		Element custNameElement = new Element("customerName", ns);
+		custNameElement.setText(customer);
+		root.addContent(custNameElement);
+
+		// CustomerPassword
+		Element custPassElement = new Element("customerPass", ns);
+		custPassElement.setText(password);
+		root.addContent(custPassElement);
+
+		// Create Document
+		Document loginDocument = new Document(root);
+
+		try {
+			// Validate
+			validator.validateXML(loginDocument, Paths.get(validatorPath));
+
+			// Send request and return true if logged in, otherwise false
+			URL loginUrl = new URL(ApplicationConstants.LOGIN);
+			return httpHandler.outputXMLonHTTP("POST", loginUrl, loginDocument);
+		} catch (Exception e) {
+			System.out.println("An error occurred: " + e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public ArrayList<Item> getItemList() {
@@ -76,8 +117,8 @@ public class CloudHandler {
 	public void setItemList(ArrayList<Item> itemList) {
 		this.itemList = itemList;
 	}
-	
-	private void addItemListInSession(){
+
+	private void addItemListInSession() {
 		session.setAttribute("itemList", this.itemList);
 	}
 
