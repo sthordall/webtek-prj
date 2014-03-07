@@ -33,14 +33,11 @@ public class CloudHandler {
 		validator = new Validator();
 		httpHandler = new HttpHandler();
 		xmlParser = new XMLParser();
-		XMLOutputter xmlOutputter = new XMLOutputter();
 
 		try {
 			URL requestUrl = new URL(ApplicationConstants.LISTITEMS);
 			Element responseRoot = httpHandler.HttpRequest("GET", requestUrl)
 					.getRootElement();
-
-			xmlOutputter.output(responseRoot, System.out);
 
 			if (responseRoot == null) {
 				throw new Exception("Response from itemList request was null");
@@ -72,10 +69,6 @@ public class CloudHandler {
 		} catch (Exception e) {
 			System.out.println("An error occurred: " + e.getMessage());
 		}
-		/* Save into session */
-		System.out.println("Before Session method");
-		// addItemListInSession();
-		System.out.println("After Session method");
 	}
 
 	public boolean login(String customer, String password) throws IOException,

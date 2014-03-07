@@ -1,7 +1,9 @@
 package com.webtek.musicshop.Handlers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,35 +17,86 @@ import com.webtek.musicshop.Model.Item;
 
 @Path("baskethandler")
 public class BasketHandler {
-	/**
-	 * Out Servlet session. We will need this for the shopping basket
-	 */
-	@Context
+
 	HttpSession session;
-	// @Context ServletContext servletContext;
 
 	private ArrayList<Item> itemList;
+
 	CloudHandler cloudHandler = new CloudHandler();
 
-	public ArrayList<Item> getItemList() {
-		return itemList;
+	/**************************** Constructors ****************************************/
+
+	public BasketHandler(@Context HttpServletRequest servletRequest) {
+		if (servletRequest.getSession() != null) {
+			session = servletRequest.getSession();
+		}
 	}
 
-	public void setItemList(ArrayList<Item> itemList) {
-		this.itemList = itemList;
+	/**************************** Business Logic **************************************/
+	/**
+	 * Retrieve the one product that is to be added to basket and add it to
+	 * array of products if there is already products in a session basket.
+	 */
+	@POST
+	@Path("addProductsTobasket/{itemid}")
+	public String addProductsToBasket(@PathParam("itemid") String itemID) {
+		// Retrieve itemID
+		System.out.println("Got request with id: " + itemID);
+		
+		HashMap<String, Integer> basketHashMap;
+		
+		// The data should be saved in a hashmap(key, value)
+		// By using hashmap instead of list, it makes it easier to count how
+		// many items
+		// of the current itemID in hashmap instead of list
+		
+		if(session.getAttribute("basket") == null){
+			basketHashMap = new HashMap<String, Integer>();
+			basketHashMap.put(itemID, 1);
+		}
+		else{
+			basketHashMap = (HashMap<String, Integer>) session.getAttribute("basket");			
+			if(basketHashMap.containsKey(itemID)){
+				basketHashMap.put(itemID, basketHashMap.get(itemID)+1);
+			}
+			else{
+				basketHashMap.put(itemID, 1);
+			}		
+		}
+		session.setAttribute("basket", basketHashMap);
+		//TEST
+		HashMap<String, Integer> testHashMap = (HashMap<String, Integer>) session.getAttribute("basket");
+		System.out.print(testHashMap.get(itemID).toString());
+		return "success";
 	}
-
-	public BasketHandler() {
+	
+	@GET
+	@Path("checkoutBasket")
+	public String CheckoutBasket(){
+		
+		Item itemToAdd = new Item();
+		
+//		ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
+//		for(int i = 0; i < itemList.size(); i++){
+//			if(itemID == itemList.get(i).getItemID()){
+//				 itemToAdd = itemList.get(i);
+//			}
+//		}
+		// Make another Cloud call to check whether the current item is higher
+		// than 0
+		// Return success or fail depending on whether the item is higher than 0
+		// Only save it if it is higher than 0
+		
+		return "";
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@GET
 	@Path("productlist")
 	public String ReturnProductList() {
 
 		// itemList = (ArrayList<Item>) session.getAttribute("itemList");
 		itemList = cloudHandler.getItemList();
-
+		session.setAttribute("itemList", itemList);
 		return convertItemListToJsonArray(itemList).toString();
 	}
 
@@ -53,36 +106,13 @@ public class BasketHandler {
 
 	}
 
-	/**
-	 * Retrieve the one product that is to be added to basket and add it to
-	 * array of products if there is already products in a session basket.
-	 */
-	@POST
-	@Path("addProductsTobasket/{itemid}")
-	public String addProductsToBasket(@PathParam("itemid") String itemID) {
+	/**************************** Getters And Setters ************************************/
+	public ArrayList<Item> getItemList() {
+		return itemList;
+	}
 
-		// Retrieve itemID
-		System.out.println("Got request with id: " + itemID);
-
-		// Lookup on Cloud to retrieve information regarding the specific item
-
-		// If the item is found(which it should, otherwise send fail), save the
-		// data into our item model
-		// The data should be saved in a hashmap(key, value)
-		// By using hashmap instead of list, it makes it easier to count how
-		// many items
-		// of the current itemID in hashmap instead of list
-
-		// Make another Cloud call to check whether the current item is higher
-		// than 0
-		// Return success or fail depending on whether the item is higher than 0
-
-		// Save the hashmap into a session(TODO: Instantiate Session in
-		// Constructor)
-		// Only save it if it is higher than 0
-
-		return "success";
-
+	public void setItemList(ArrayList<Item> itemList) {
+		this.itemList = itemList;
 	}
 }
 
