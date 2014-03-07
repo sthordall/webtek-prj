@@ -11,7 +11,7 @@ import org.json.JSONObject;
 @Path("shop")
 public class ShopService {
 	/**
-	 * Out Servlet session. We will need this for the shopping basket
+	 * Our Servlet session. We will need this for the shopping basket
 	 */
 	@Context
 	HttpSession session;
