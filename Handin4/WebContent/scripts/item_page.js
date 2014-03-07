@@ -2,15 +2,36 @@ $(document).ready(function() {
 	$.get('rest/baskethandler/productlist', function(itemsText) {
 		var items = JSON.parse(itemsText);
 		addItemsToPage(items);
+		
+		$('.buyItem').click(function() {
+	    	var buttId = this.id;
+	    	var itemId = buttId.split('_').pop();
+	    	alert(itemId);
+	    	$.post('rest/baskethandler/addProductsTobasket/'+itemId, function(status) {
+	    		if(status == "success") {
+	    			var items = JSON.parse(itemsText);
+	    			addItemsToPage(items);
+	    		} else {
+	    			alert('Something went wrong!');
+	    		}
+	    	});
+	    });
+		
+		$('.item').hover( function() {
+			$(this).children('.itemInfo').children('.itemName').slideUp("fast");
+			$(this).children('.itemInfo').children('.itemDescription').slideDown("fast");
+		},
+		function() {
+			$(this).children('.itemInfo').children('.itemDescription').slideUp("fast");
+			$(this).children('.itemInfo').children('.itemName').slideDown("fast");
+		});
+		
 	});
-	
 });
 
 function addItemsToPage(items) {
     
     var pageContent = $('#page_content');
-    pageContent.append('<script type="text/javascript" src="scripts/item.js"></script>');
- 
     for (var i = 0; i < items.length; i++) {
     	
         var item = items[i];
@@ -32,7 +53,6 @@ function addItemsToPage(items) {
 function createItemSkeleton(rootDiv, itemId) {
 	rootDiv.append('<div class="item" id="' + itemId + '"></div>'); 
     itemDiv = $('#'+itemId);
-	itemDiv.append('<script type="text/javascript" src="scripts/item.js"></script>');
 	itemDiv.append('<div class="itemImage"></div>');
 	
     itemDiv.append('<div class="itemInfo"></div>');
@@ -42,20 +62,7 @@ function createItemSkeleton(rootDiv, itemId) {
     itemDiv.append('<div class="itemBuyInfo"></div>');
     itemDiv.children('.itemBuyInfo').append('<div class="itemPrice"></div>');
     itemDiv.children('.itemBuyInfo').append('<div class="itemStock"></div>');
-    itemDiv.children('.itemBuyInfo').append('<button class="buyItem" type="submit" id="buyButt_"' + itemId +'>Buy</button>');
+    itemDiv.children('.itemBuyInfo').append('<button class="buyItem" type="submit" id="buyButt_' + itemId +'">Buy</button>');
     
-    $('#buyButt'+itemId).click(function(event) {
-    	var buttId = event.target.id;
-    	var itemId = buttId.split('_').pop();
-    	alert(itemId);
-    	$.get('rest/baskethandler/addProductsTobasket/'+itemId, function() {
-    		if(status == "success") {
-    			location.reload();
-    		} else {
-    			alert('Something went wrong!');
-    		}
-    	});
-    });
-   
     return itemDiv;
 }
