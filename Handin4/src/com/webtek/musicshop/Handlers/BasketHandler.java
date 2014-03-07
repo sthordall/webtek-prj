@@ -79,7 +79,7 @@ public class BasketHandler {
 	 * @param customerId
 	 */
 
-	@GET
+	@POST
 	@Path("checkoutBasket")
 	public String CheckoutBasket() {
 

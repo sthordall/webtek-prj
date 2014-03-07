@@ -197,14 +197,12 @@ public class CloudHandler {
 
 	public String SubstractItemStock(String itemId, Integer subtractItemStock) {
 
-		Iterator<Item> itemIterator = itemList.iterator();
 		Integer currentItemStock = 0;
 		Integer newItemStock;
 
 		// Find itemstock on item
-		while (itemIterator.hasNext()) {
-			Item item = (Item) itemIterator.next();
-			if (item.getItemID() == itemId) {
+		for (Item item : itemList) {
+			if (item.getItemID().equals(itemId)) {
 				currentItemStock = Integer.parseInt(item.getItemStock());
 			}
 		}
@@ -225,6 +223,9 @@ public class CloudHandler {
 				ApplicationConstants.WEBTEKNAMESPACE));
 		adjustStock.addContent(new Element("itemID").setText(itemId)
 				.setNamespace(ApplicationConstants.WEBTEKNAMESPACE));
+
+		newItemStock = (0 - subtractItemStock);
+
 		adjustStock.addContent(new Element("adjustment").setText(
 				newItemStock.toString()).setNamespace(
 				ApplicationConstants.WEBTEKNAMESPACE));
@@ -232,15 +233,14 @@ public class CloudHandler {
 		Document document = new Document(adjustStock);
 
 		try {
-			if (httpHandler.outputXMLonHTTP("POST", new URL(
-					ApplicationConstants.ADJUSTSTOCK), document) != null) {
-				return "stockAdjusted";
-			}
+			httpHandler.outputXMLonHTTP("POST", new URL(
+					ApplicationConstants.ADJUSTSTOCK), document);
+			return "stockAdjusted";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "stockNotAdjusted";
 		}
-		return "stockNotAdjusted";
 
 	}
 

@@ -2,6 +2,7 @@ package com.webtek.musicshop.Handlers;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -58,6 +59,7 @@ public class UserHandler {
 	@Path("logout")
 	public void logout() {
 		session.setAttribute("user", new Customer());
+		session.setAttribute("basket", new HashMap<String, Integer>());
 	}
 
 	@GET
