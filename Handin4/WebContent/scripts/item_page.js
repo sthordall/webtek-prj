@@ -12,9 +12,7 @@ $(document).ready(function() {
 	    });
 		
 		$('#checkoutBuy').click(function() {
-	    	var buttId = this.id;
-	    	var itemId = buttId.split('_').pop();
-	    	$.post('rest/baskethandler/checkout/', function(status) {    		
+	    	$.post('rest/baskethandler/checkoutBasket/', function(status) {    		
 	    	});
 	    	updateBasket();	    	
 	    });

@@ -85,7 +85,7 @@ public class CloudHandler {
 		}
 	}
 
-	public boolean login(String customer, String password) throws IOException,
+	public String login(String customer, String password) throws IOException,
 			JDOMException, URISyntaxException {
 		Namespace ns = ApplicationConstants.WEBTEKNAMESPACE;
 		Element root = new Element("login", ns);
@@ -109,12 +109,13 @@ public class CloudHandler {
 
 			// Send request and return true if logged in, otherwise false
 			URL loginUrl = new URL(ApplicationConstants.LOGIN);
-			httpHandler.outputXMLonHTTP("POST", loginUrl, loginDocument);
-			return true;
+
+			return httpHandler.outputXMLonHTTP("POST", loginUrl, loginDocument)
+					 				.getRootElement().getChildText("customerID", ns);
 		} catch (Exception e) {
 			System.out.println("An error occurred: " + e.getMessage());
 			e.printStackTrace();
-			return false;
+			return "failure";
 		}
 	}
 	

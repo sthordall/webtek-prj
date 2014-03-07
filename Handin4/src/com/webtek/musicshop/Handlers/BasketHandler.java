@@ -83,16 +83,20 @@ public class BasketHandler {
 	@POST
 	@Path("checkoutBasket")
 	public String CheckoutBasket() {
+		System.out.println("CheckoutBasket called...");
 
 		Customer customer;
 
 		// Checking if a customer is logged in
 		if (session.getAttribute("user") == null) {
+			System.out.println("user is null");
 			return "notLoggedIn";
 		} else {
 			customer = (Customer) session.getAttribute("user");
+			System.out.println(customer.getCustomerID());
 
 			if (customer.getIsLoggedIn() == false) {
+				System.out.println("user is false");
 				return "notLoggedIn";
 			}
 		}
