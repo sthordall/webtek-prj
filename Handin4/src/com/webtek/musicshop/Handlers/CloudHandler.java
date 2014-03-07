@@ -15,8 +15,8 @@ import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
 import org.jdom2.output.XMLOutputter;
 
-import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
-import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
+//import web.tek.icouldntcareless.musicshop.helpers.HttpHandler;
+//import web.tek.icouldntcareless.musicshop.helpers.XMLParser;
 
 import com.webtek.musicshop.Model.ApplicationConstants;
 import com.webtek.musicshop.Model.Item;
@@ -116,7 +116,7 @@ public class CloudHandler {
 //		return true;
 //	}
 	
-	public String CreateCustomer(String username, String password) {
+	public boolean CreateCustomer(String username, String password) {
 		XMLParser xmlParser = new XMLParser();
 		HttpHandler httpHandler = new HttpHandler();
 		XMLOutputter outputter = new XMLOutputter();
@@ -129,15 +129,15 @@ public class CloudHandler {
 			outputter.output(createDocument, System.out);
 			if (httpHandler.outputXMLonHTTP("POST", new URL(
 					ApplicationConstants.CREATECUSTOMER), createDocument) != false) {
-				return "customerCreated";
+				return true;
 			}
 
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			return "customerNotCreated";
+			return false;
 		}
-		return "customerNotCreated";
+		return false;
 	}
 
 	public ArrayList<Item> getItemList() {

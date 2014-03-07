@@ -68,4 +68,22 @@ public class UserHandler {
 		}
 
 	}
+	
+	@POST
+	@Path("createCustomer")
+	public String createCustomer(@FormParam("username") String user,
+			@FormParam("password") String password) throws IOException, JDOMException, URISyntaxException{
+		
+		Boolean isSucces = cloudHandler.CreateCustomer(user, password);
+
+		if (isSucces) {
+			Customer customer = new Customer();
+			customer.setCustomerName(user);
+			customer.setIsLoggedIn(true);
+			session.setAttribute("user", customer);
+			return "success";
+		} else {
+			return "failure";
+		}
+	}
 }
