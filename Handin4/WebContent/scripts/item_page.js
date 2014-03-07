@@ -12,7 +12,14 @@ $(document).ready(function() {
 	    });
 		
 		$('#checkoutBuy').click(function() {
-	    	$.post('rest/baskethandler/checkoutBasket/', function(status) {    		
+	    	$.post('rest/baskethandler/checkoutBasket/', function(status) {
+	    		if(status == "notLoggedIn"){
+	    			alert("You must login to buy product you fool!");
+	    		}
+	    		else{
+	    			alert("Item Bought!");
+	    		}
+	    		
 	    	});
 	    	updateBasket();	    	
 	    });
@@ -60,10 +67,10 @@ function addItemsToPage(items) {
 }
 
 function createBasketSkeleton(rootDiv){
-	rootDiv.append('<table id="basketTable"></table>');
+	rootDiv.append('<table border="1" id="basketTable"></table>');
 	var basketTable = $('#basketTable');
 	basketTable.append('<tr class="" id="tableTitle"><td><h2>Basket</h2></td></tr>');
-	basketTable.append('<tr class="" id="tableItems"></tr>');
+	//basketTable.append('<tr class="" id="tableItems"></tr>');
 	basketTable.append('<tr class="" id="tableCheckout"><td id="tdSubtotal"></td><td id="tdcheckout">'
 			+ '<button class="" id="checkoutBuy">checkout/buy</button></td></tr>');
 
@@ -72,19 +79,24 @@ function createBasketSkeleton(rootDiv){
 function updateBasket(){
 	$.get('rest/baskethandler/updatecart', function(itemBasket) {
 		var itemBasket = JSON.parse(itemBasket);
-		var tableItems = $('#tableItems');
+		var tableItems = $('#tableTitle');
 		//var SubTotalElement = $('#tdSubtotal');
 		//SubTotalElement.empty();
-		tableItems.empty();
+		for(var i = 0; i < itemBasket.length; i++){
+			var itemName = $('#itemName'+i).remove();
+		}
 		
 		
 		for(var i = 0; i < itemBasket.length; i++){
 			var item = itemBasket[i];
 			//SubTotal += item.itemPrice;
-			tableItems.append('<td id=itemName' + i + '>'
+			tableItems.after('<tr id=itemName' + i + '>'
 					+ item.itemName +'</td>');
-			tableItems.append('<td id=itemPrice' + i + '>' + item.itemPrice + '</td>');
-			tableItems.append('<td id=itemCount' + i + '>' + item.itemCount + '</td>');
+			var rowItemName = $('#itemName' + i);
+			rowItemName.append('<td id=itemName' + i + '>'
+					+ item.itemName +'</td>');
+			rowItemName.append('<td id=itemPrice' + i + '>' + item.itemPrice + '</td>');
+			rowItemName.append('<td id=itemCount' + i + '>' + item.itemCount + '</td>');
 		}
 		
 		//SubTotalElement = $('#tdSubtotal');

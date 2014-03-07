@@ -180,11 +180,11 @@ public class CloudHandler {
 			root.addContent(amountElement);
 	
 			// AdjustStock
-			String subtractResponse = SubstractItemStock(entry.getKey(),
-					entry.getValue());
-			if (subtractResponse != "stockAdjusted") {
-				return subtractResponse;
-			}
+//			String subtractResponse = SubstractItemStock(entry.getKey(),
+//					entry.getValue());
+//			if (subtractResponse != "stockAdjusted") {
+//				return subtractResponse;
+//			}
 	
 			// CreateDocument
 			Document sellItemsDocument = new Document(root);
@@ -233,7 +233,7 @@ public class CloudHandler {
 		// Find itemstock on item
 		while (itemIterator.hasNext()) {
 			Item item = (Item) itemIterator.next();
-			if (item.getItemID() == itemId) {
+			if (item.getItemID().equals(itemId)) {
 				currentItemStock = Integer.parseInt(item.getItemStock());
 			}
 		}
