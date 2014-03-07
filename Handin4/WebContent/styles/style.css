@@ -250,15 +250,22 @@ div.itemBuyInfo {
 	height: 100px;
 	width: 120px;
 	float: right;
-	background-color: rgba(0, 0, 0, 0.7) ;
-	
+	background-color: rgba(0, 0, 0, 0.7) ;	
 }
-
 
 div.itemBuyInfo p {
 	height: 10px;
 	margin-left: 10px;
 	color: white;
+}
+
+div.itemList{
+	width: 80%;
+	
+}
+
+div.basketClass{
+	float: right;
 }
 
 button.buyItem {

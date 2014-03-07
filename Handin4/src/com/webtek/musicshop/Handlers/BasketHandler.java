@@ -14,6 +14,7 @@ import javax.ws.rs.core.Context;
 import org.json.JSONArray;
 
 import com.webtek.musicshop.Model.Item;
+import com.webtek.musicshop.Model.ItemBasket;
 
 @Path("baskethandler")
 public class BasketHandler {
@@ -100,13 +101,34 @@ public class BasketHandler {
 		return convertItemListToJsonArray(itemList).toString();
 	}
 
+	
+	@GET
+	@Path("updatecart")
+	public String UpdateCart(){
+		System.out.println("UpdateCart called...");
+		HashMap<String, Integer> basketHashMap = (HashMap<String, Integer>) session.getAttribute("basket");
+		ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
+		
+		ArrayList<ItemBasket> itemBasket = new ArrayList<ItemBasket>();
+		for(int i = 0; i < itemList.size(); i++){
+			if(basketHashMap.containsKey(itemList.get(i).getItemID())){
+				
+				itemBasket.add(new ItemBasket(itemList.get(i).getItemID(), itemList.get(i).getItemName()
+						, itemList.get(i).getItemURL(), Integer.parseInt(itemList.get(i).getItemPrice()), 
+						Integer.toString(basketHashMap.get(itemList.get(i).getItemID()))));
+			}
+		}		
+		return new JSONArray(itemBasket).toString();
+	}
+	/**************************** Helper Methods*****************************************/
+	
 	private JSONArray convertItemListToJsonArray(ArrayList<Item> itemList) {
 		JSONArray array = new JSONArray(itemList);
 		return array;
-
 	}
+	
 
-	/**************************** Getters And Setters ************************************/
+	/**************************** Getters And Setters************************************/
 	public ArrayList<Item> getItemList() {
 		return itemList;
 	}
