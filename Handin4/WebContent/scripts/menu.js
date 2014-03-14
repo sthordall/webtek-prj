@@ -29,4 +29,8 @@ $(document).ready(function() {
 	$('#signup_link').click(function(){
 		$('#page_content').load('views/sign_up.html');
 	});
+	
+	$('#support_link').click(function(){
+		$('#page_content').load('views/Support.html');
+	});
 });
