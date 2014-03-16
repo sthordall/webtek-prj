@@ -6,7 +6,15 @@
 <title>Support Test Site</title>
 </head>
 <body>
-Hej med dig test test
+	<form name="input" action="rest/messageHandler/sendMessage" method="post">
+		<label>User: </label>
+		<input type="text" name="userName" readOnly="readOnly"><br>
+		<label>Text</label>
+		<input type="text" name="messageBox"><br>
+		<input type="submit" value="Submit">
+	</form>
 
+        <h3>Live chat</h3>
+        <div id="chat"></div>
 </body>
 </html>

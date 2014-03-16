@@ -3,6 +3,8 @@ package com.webtek.musicshop.Model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 /**
  * This class is responsible for persisting data object between parts of our application
  * It is our Model for containing data
@@ -18,13 +20,14 @@ public class Message implements Serializable{
     private String user;
     private String message;
     /*******************************Constructors***********************************************/
-    
-    
-    
+    public Message(String user, String message){
+    	this.user = user;
+    	this.message = message;
+    }
+     
     /*******************************Business Logic Methods*************************************/
-    
-    
-    
+        
+    //Should not contain any method in this section.
     
     /*******************************Getters/Setters********************************************/
 	public Date getDateSent() {

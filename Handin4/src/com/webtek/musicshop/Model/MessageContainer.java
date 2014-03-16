@@ -1,6 +1,7 @@
 package com.webtek.musicshop.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 
@@ -14,11 +15,14 @@ public class MessageContainer {
 	@javax.ws.rs.core.Context 
 	ServletContext context;
 	
-	Message message;
+	//AraryList to be saved into our ServletContext, but it has to 
+	ArrayList<Message> messageList = new ArrayList<>();
+
 	private static MessageContainer instance = null;
 	
 	/*******************************Constructors***********************************************/
 	
+	//Singleton
 	
     /*******************************Singleton**************************************************/
     
@@ -31,17 +35,34 @@ public class MessageContainer {
     
     /*******************************Business Logic Methods*************************************/
     
-	public void AddMessage(Message message){
-		
+	/**
+	 * Add Message Object into ArrayList and sets date to current Date
+	 * @param message
+	 * the object to add into ArrayList
+	 */
+	public void SendMessage(Message message){
+		message.setDateSent(new Date());
+		messageList.add(message);
 	}
 	
-	public ArrayList<Message> GetListOfMessages(){
-		
-	}
-    
-    
+    public Message getFirstAfter(Date after) {
+        if(messageList.isEmpty())
+            return null;
+        if(after == null)
+            return messageList.get(0);
+        for(Message m : messageList) {
+            if(m.getDateSent().after(after))
+                return m;
+        }
+        return null;
+    }
     
     /*******************************Getters/Setters********************************************/
-	
+	public ArrayList<Message> getMessageList() {
+		return messageList;
+	}
 
+	public void setMessageList(ArrayList<Message> messageList) {
+		this.messageList = messageList;
+	}
 }
