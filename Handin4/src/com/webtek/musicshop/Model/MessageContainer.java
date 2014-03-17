@@ -46,8 +46,16 @@ public class MessageContainer {
 	}
 	
     public Message getFirstAfter(Date after) {
-        if(messageList.isEmpty())
-            return null;
+    	
+    	//When we get messageList for first time from Servlet
+    	if(messageList == null){
+    		messageList = new ArrayList<>();
+    	}
+    	//First time entering Support page
+        if(messageList.isEmpty()){
+        	setFirstMessage();
+        }
+            
         if(after == null)
             return messageList.get(0);
         for(Message m : messageList) {
@@ -55,6 +63,11 @@ public class MessageContainer {
                 return m;
         }
         return null;
+    }
+    
+    private void setFirstMessage(){
+		Message message = new Message("Admin", "Welcome to Support Chat");
+		MessageContainer.getInstance().SendMessage(message); 
     }
     
     /*******************************Getters/Setters********************************************/

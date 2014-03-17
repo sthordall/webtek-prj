@@ -1,6 +1,7 @@
 package com.webtek.musicshop.Handlers;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 
+import org.json.JSONArray;
+
+import com.webtek.musicshop.Model.Customer;
 import com.webtek.musicshop.Model.Message;
 import com.webtek.musicshop.Model.MessageContainer;
+import com.google.gson.Gson;
 
 /**
  * This class is our handler for handling message and persist messages
@@ -23,6 +28,11 @@ import com.webtek.musicshop.Model.MessageContainer;
 @Path("messageHandler")
 public class MessageHandler {
 	HttpSession session;
+	
+	ArrayList<Message> messageList = new ArrayList<>();
+	Message message;
+	Date lastUpDate;
+	Gson gson;
 //	@Context ServletContext context;
 	@javax.ws.rs.core.Context 
 	ServletContext context;
@@ -37,9 +47,9 @@ public class MessageHandler {
 	public MessageHandler(@Context HttpServletRequest servletRequest) {
 		if (servletRequest.getSession() != null) {
 			session = servletRequest.getSession();
-		}
-		//Test only (context is NULL, because it is not within the scope of the Servlet unlike the methods below)
-//		System.out.println("MessageHandler Constructor: " + context);		
+		}	
+		lastUpDate = new Date(0);
+		gson = new Gson();
 	}	
     
     /*******************************Webservice Methods*****************************************/
@@ -52,14 +62,7 @@ public class MessageHandler {
     	MessageContainer.getInstance().SendMessage(new Message(user, message));   	
     	//Save in Servlet
     	context.setAttribute("messageContainer", MessageContainer.getInstance().getMessageList());
- 	
-    	//Test only
-//    	System.out.println("sendMessage: " + context);
-    	
-//    	Message message2 = new Message("kasper", "Jeg keder mig");
-//    	MessageContainer.getInstance().SendMessage(message2);
-    	context.setAttribute("messageContainer", MessageContainer.getInstance().getMessageList());
-    	ArrayList<Message> messageList = new ArrayList<>();
+   	
     	messageList = (ArrayList<Message>) context.getAttribute("messageContainer");
     	
     	for (int i = 0; i < messageList.size(); i++) {
@@ -69,8 +72,27 @@ public class MessageHandler {
     
     @GET
     @Path("/getUserInfo")
-    public void getUserInfo(){
+    public String getUserInfo(){
+    	Customer currentCustomer = (Customer) session.getAttribute("user");
+    	return currentCustomer.getCustomerName();    	
+    }
+    
+    @GET
+    @Path("/getNextMessage")
+    public String getNextMessage(){
+    	messageList = (ArrayList<Message>) context.getAttribute("messageContainer");
     	
+    	MessageContainer.getInstance().setMessageList(messageList);
+    	message = MessageContainer.getInstance().getFirstAfter(lastUpDate);
+    	if(message == null){
+    		return "noUpdate";
+    	}
+    	lastUpDate = message.getDateSent();
+    	
+    	context.setAttribute("messageContainer", MessageContainer.getInstance().getMessageList());
+    	
+    	String json = gson.toJson(message);
+    	return json;
     }
     
     /*******************************Getters/Setters********************************************/

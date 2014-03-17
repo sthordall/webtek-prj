@@ -3,8 +3,6 @@ package com.webtek.musicshop.Model;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 /**
  * This class is responsible for persisting data object between parts of our application
  * It is our Model for containing data
