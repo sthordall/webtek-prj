@@ -81,16 +81,27 @@ public class MessageHandler {
     @Path("/getNextMessage")
     public String getNextMessage(){
     	messageList = (ArrayList<Message>) context.getAttribute("messageContainer");
+    	lastUpDate = (Date) context.getAttribute("lastUpDate");
     	
+    	if(lastUpDate == null)
+    		System.out.println("den er null");
+    	else {
+    		System.out.println(lastUpDate.toString() + ": 1");
+		}
+		
     	MessageContainer.getInstance().setMessageList(messageList);
     	message = MessageContainer.getInstance().getFirstAfter(lastUpDate);
+    	System.out.println(MessageContainer.getInstance().getMessageList().size());
     	if(message == null){
+    		System.out.println("noUpdate");
     		return "noUpdate";
     	}
+    	System.out.println(message.getMessage());
     	lastUpDate = message.getDateSent();
-    	
+    	System.out.println(lastUpDate.toString() + ": 2");
+    	context.setAttribute("lastUpDate", lastUpDate);
     	context.setAttribute("messageContainer", MessageContainer.getInstance().getMessageList());
-    	
+    	System.out.println(MessageContainer.getInstance().getMessageList().size() + "found new message");
     	String json = gson.toJson(message);
     	return json;
     }
