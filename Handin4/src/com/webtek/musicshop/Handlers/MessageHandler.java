@@ -74,7 +74,9 @@ public class MessageHandler {
     @Path("/getUserInfo")
     public String getUserInfo(){
     	Customer currentCustomer = (Customer) session.getAttribute("user");
-    	return currentCustomer.getCustomerName();    	
+    	
+    	String json = gson.toJson(currentCustomer);
+    	return json;  	
     }
     
     @GET

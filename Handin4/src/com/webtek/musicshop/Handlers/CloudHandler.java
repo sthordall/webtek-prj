@@ -42,7 +42,7 @@ public class CloudHandler {
 
 	@Context
 	ServletContext servletContext;
-
+	
 	public CloudHandler() {
 		validator = new Validator();
 		httpHandler = new HttpHandler();
@@ -270,6 +270,10 @@ public class CloudHandler {
 			return "stockNotAdjusted";
 		}
 		return "stockNotAdjusted";
+	}
+	
+	public void GetSaleFromUser(){
+		
 	}
 
 	

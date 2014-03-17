@@ -8,8 +8,9 @@ $(document).ready(function() {
 			alert("Welcome to support page");
 			getUserInfo();
 		}
+		NoobHasOurProduct();
 	});
-	setInterval("nextMessage()", 1000); //update the chart every 200 ms
+	setInterval("nextMessage()", 200); //update the chart every 200 ms
 //	var updateMessage = function(){
 //		 $.get('rest/messageHandler/getNextMessage', function(gsonMessage) {
 //			 
@@ -27,11 +28,34 @@ $(document).ready(function() {
 });
 
 function getUserInfo(){
-	$.get('rest/messageHandler/getUserInfo', function(username) {
+	$.get('rest/messageHandler/getUserInfo', function(gsonMessage) {
+		var customer = JSON.parse(gsonMessage);
 		var userNameTextField = document.getElementById('userN');
-		userNameTextField.value = username;
+		userNameTextField.value = customer.customerName;
+		var userNameTextField = document.getElementById('userI');
+		userNameTextField.value = customer.customerID;
 	});
 }
+
+function NoobHasOurProduct(){
+	 $.get('http://services.brics.dk/java4/cloud/listCustomerSales?customerID=' + 971, 
+			 function(xmlSale) {
+		 var xml = xmlSale;
+		 xmlDoc = $.parseXML(xml),
+		  
+		 $xml = $(xmlDoc),
+		 $shopid = $xml.find("shopID");
+		 $itemid = $xml.find("itemID");
+		 
+		 if($shopid.Text() != "446" && $itemid.Text() != "2104"){
+				alert("You dont have our product buy the product 2104 :)");
+				window.location.href="/DynamicMusicShop";
+		 }
+
+		 
+	});
+	
+};
 
 function nextMessage(){
 	 $.get('rest/messageHandler/getNextMessage', function(gsonMessage) {
